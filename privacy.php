@@ -73,18 +73,7 @@
         Please review these terms carefully before using Zayd. Your continued use of our platform constitutes acceptance of
         these Terms and Conditions.</pre>    
     </div>
-    <footer>
-        <span>
-            <a href="faq.html">FAQs</a>
-        </span>
-        <p>
-            &copy; 2024 <a href="#">www.zayd.com</a>. All Rights Reserved
-        </p>
-        <span>
-            <a href="privacy.html">Privacy Policy</a> |
-            <a href="terms.html">Terms & Conditions</a>
-        </span>
-    </footer>
+    <?php include "includes/footer.php";?>
     <script src="js/main.js"></script>
 
 </body>

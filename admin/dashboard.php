@@ -11,7 +11,7 @@
 </head>
 
 <body>
-        <?php include "includes/navbar.php";?>
+        <?php include "../includes/navbar.php";?>
 
 
     <div class="dashboardNav web">

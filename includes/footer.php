@@ -1,13 +1,13 @@
     
     <footer>
         <span>
-            <a href="faq.html">FAQs</a>
+            <a href="faq.php">FAQs</a>
         </span>
         <p>
-            &copy; 2024 <a href="#">www.zayd.com</a>. All Rights Reserved
+            &copy; 2024 <a href="/">www.zayd.com</a>. All Rights Reserved
         </p>
         <span>
-            <a href="privacy.html">Privacy Policy</a> |
-            <a href="terms.html">Terms & Conditions</a>
+            <a href="privacy.php">Privacy Policy</a> |
+            <a href="terms.php">Terms & Conditions</a>
         </span>
     </footer>
