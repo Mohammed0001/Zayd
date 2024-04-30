@@ -1,5 +1,9 @@
 <html>
-
+<?php
+    if (!isset($_COOKIE["SSN"])) {
+        header("Location: login.php");
+    }
+?>
 <head>
     <link rel="icon" type="image/x-icon" href="img/logo1.png">
     <title>Zayd | Dashboard</title>
@@ -10,51 +14,7 @@
 </head>
 
 <body>
-    <nav class="mainNav" id="mainNav">
-        <div class="searchForm">
-            <input type="search" name="search" id="searchInput" placeholder="Search..">
-            <button>&#x1F50E;&#xFE0E;</button>
-        </div>
-        <a href="index.html"><img src="img/logo.png" alt="Zayed"></a>
-        <div class="profileBtn">
-            <a class="login-button" href="dashboard.html">Profile</a>
-        </div>
-    </nav>
-    <div class="secondary-nav" id="secondary-nav">
-        <ul>
-            <li><a href="liveAuctions.html">Live Auctions</a></li>
-            <li><a href="categories.html">Categories</a></li>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About-us</a></li>
-            <li><a href="contact.html">Contact-us</a></li>
-        </ul>
-    </div>
-    <div class="mobile-nav">
-        <div class="searchForm">
-            <!-- <input type="search" name="search" id="searchInput" placeholder="Search.."> -->
-            <button id="navigateToSearch">&#x1F50E;&#xFE0E;</button>
-        </div>
-        <a href="index.html"><img src="img/logo.png" alt="Zayed"></a>
-        <div><button id="openNav">&#8801;</button></div>
-    </div>
-    <div class="mobile-menu hide-Nav" id="mobile-menu">
-        <span id="closeNav">&times;</span>
-        <ul>
-            <li><a href="liveAuctions.html">Live Auctions</a></li>
-            <li><a href="categories.html">Categories</a></li>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About-us</a></li>
-            <li><a href="contact.html">Contact-us</a></li>
-        </ul>
-        <div class="profileBtn">
-            <a class="login-button" href="dashboard.html">Profile</a>
-        </div>
-    </div>
-    <div class="search-nav hide" id="search-nav">
-        <span class="exit" id="exit">&times;</span>
-        <input type="search" name="search" id="searchInputMobile" placeholder="Search..">
-        <button>&#x1F50E;&#xFE0E;</button>
-    </div>
+    <?php include "includes/navbar.php";?>
 
     <div class="dashboardNav web">
         <div class="profileImage">
@@ -73,12 +33,12 @@
         </div>
         <div class="secondaryContent">
             <ul>
-                <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="sellProduct.html"><i class="fa fa-plus"></i> Sell Product</a></li>
-                <li><a href="liveAuctions.html"><i class="fa fa-clock"></i> Live Auctions</a></li>
-                <li><a href="categories.html"><i class="fa fa-layer-group"></i> Categories</a></li>
-                <li><a href="about.html"><i class="fa fa-address-card"></i> About-us</a></li>
-                <li><a href="contact.html"><i class="fa fa-phone"></i> Contact-us</a></li>
+                <li><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="sellProduct.php"><i class="fa fa-plus"></i> Sell Product</a></li>
+                <li><a href="liveAuctions.php"><i class="fa fa-clock"></i> Live Auctions</a></li>
+                <li><a href="categories.php"><i class="fa fa-layer-group"></i> Categories</a></li>
+                <li><a href="about.php"><i class="fa fa-address-card"></i> About-us</a></li>
+                <li><a href="contact.php"><i class="fa fa-phone"></i> Contact-us</a></li>
             </ul>
         </div>
         <div class="logoutBtn">
@@ -98,12 +58,12 @@
         </div>
         <div class="secondaryContent">
             <ul>
-                <li><a href="sellProduct.html"><i class="fa fa-plus"></i></a></li>
-                <!-- <li><a href="index.html"><i class="fa fa-home"></i></a></li>
-                <li><a href="liveAuctions.html"><i class="fa fa-clock"></i></a></li>
-                <li><a href="categories.html"><i class="fa fa-layer-group"></i></a></li>
-                <li><a href="about.html"><i class="fa fa-address-card"></i></a></li>
-                <li><a href="contact.html"><i class="fa fa-phone"></i></a></li> -->
+                <li><a href="sellProduct.php"><i class="fa fa-plus"></i></a></li>
+                <!-- <li><a href="index.php"><i class="fa fa-home"></i></a></li>
+                <li><a href="liveAuctions.php"><i class="fa fa-clock"></i></a></li>
+                <li><a href="categories.php"><i class="fa fa-layer-group"></i></a></li>
+                <li><a href="about.php"><i class="fa fa-address-card"></i></a></li>
+                <li><a href="contact.php"><i class="fa fa-phone"></i></a></li> -->
             </ul>
         </div>
         <div class="logoutBtn">
@@ -305,7 +265,7 @@
                             <span id="bidders">Bidders: 10 <i class="fa fa-gavel"></i></span>
                             <span id="timeleft">Time Left: 10 Sec <i class="fa fa-hourglass-start"></i> </span>
                             <br>
-                            <a class="editProduct" href="bidding.html?product=id">Let it be yours BID!</a>
+                            <a class="editProduct" href="bidding.php?product=id">Let it be yours BID!</a>
                         </div>
                     </div>
                 </div>
@@ -327,7 +287,7 @@
                             <span id="bidders">Bidders: 10 <i class="fa fa-gavel"></i></span>
                             <span id="timeleft">Time Left: 10 Sec <i class="fa fa-hourglass-start"></i> </span>
                             <br>
-                            <a class="editProduct" href="bidding.html?product=id">Let it be yours BID!</a>
+                            <a class="editProduct" href="bidding.php?product=id">Let it be yours BID!</a>
                         </div>
                     </div>
                 </div>
@@ -379,7 +339,7 @@
     <script>
         document.getElementById("userDataScript").onload = function () { 
             if (userData["type"] == "admin") {
-                    window.location.href = 'admin/dashboard.html';
+                    window.location.href = 'admin/dashboard.php';
             };
          };
     </script>

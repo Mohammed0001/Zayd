@@ -103,3 +103,7 @@ function updateTimeleft() {
 $("#submitBid").click(function () {
     window.location.href = "payment.html?p=1&price=1000";
 });
+
+$("#logoutBtn").click(function(){
+    window.location.href = "functions/nashwa.php?type=logout";
+});
