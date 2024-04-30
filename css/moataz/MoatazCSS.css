@@ -1,0 +1,196 @@
+body{
+    align-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+.container{
+    margin:70px;
+    display: inline-block;
+  
+}
+
+.note{
+    
+    color: #122620;
+    text-shadow: 1px 1px 2px black, 0 0 25px goldenrod, 0 0 5px #D6AD60;
+    display: block;
+    text-align: center;
+    letter-spacing: 3px;
+    
+}
+
+.slideshow{
+    margin-top: 120px;
+    box-shadow: #D6AD60 0px 22px 70px 4px;
+}
+.slideshow .slide-images{
+    width: 100%;
+    height: 500px;
+}
+
+.cards{
+    
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+}
+
+
+.product-card {
+    background-color: #d6ad6046;
+    border: 1px solid #D6AD60;
+    width: 25%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 20px;
+    transition: 0.7s ease;
+    position: relative;
+}
+
+.product-card:hover {
+    transform: scale(1.1);
+}
+
+.product-card:hover .product-image {
+    opacity: 0.9;
+}
+
+.product-image img {
+    width: 100%;
+    
+    padding: 7.5px;
+    box-sizing: border-box;
+    border-radius: 15px;
+}
+
+.product-info {
+    padding: 1em;
+}
+
+.product-description {
+    font-size: 0.8em;
+    color: black;
+    margin-top: -15px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: 800;
+    justify-content: space-between;
+}
+
+.product-price {
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-top: 20px;
+    color: #122620;
+}
+
+.bid-now-btn {
+    text-decoration: none;
+    background-color: 122620;
+    color: #D6AD60;
+    border: 1px solid #D6AD60;
+    border-radius: 8px;
+    margin-top: -10px;
+    margin-right: -10px;
+}
+
+.bid-now-btn:hover {
+    background-color: #D6AD60;
+    color: black;
+}
+
+
+.timeLeft {
+
+    right: 10px;
+    top: 206px;
+    color: black;
+}
+
+.bidders {
+    position: absolute;
+    top: 215px;
+    bottom: 27px;
+    left: 200px;
+    font-size: 0.8em;
+    color: black;
+    display: flex;
+    align-items: center;
+   
+   
+}
+
+.bidders svg {
+    margin-right: 5px;
+    height: 16px;
+    
+}
+
+
+.our-numbers{
+    width: 90%;
+    margin: 50px 0px 100px 80px;
+    background-color: #122620;
+    border-radius: 10px;
+    transition: 0.7s ease;
+    text-align: center;
+    justify-content: center;
+}
+.our-numbers:hover{
+    transform: scale(1.1);
+}
+
+.our-numbers h3{
+    font-size: 30px;
+    padding: 40px;
+    text-align: center;
+    color: #D6AD60;
+    justify-content: center;
+}
+
+.our-numbers .container2 {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin: 0px 60px 0px 80px;
+color:#D6AD60;
+font-size: 25px;
+font-weight: 700;
+
+}
+
+.box i{
+    font-size: 50px;
+}
+.our-numbers .container2 .box .number {
+    font-size: 40px;
+
+}
+
+.banner {
+    display: flex;
+    align-items: center;
+    margin: 40px 60px 50px 80px;
+    width: 90%;
+    height: 500px;
+   
+    
+
+}
+.banner .adv{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border-style: double;
+    color: #D6AD60;
+
+}
+
+
+

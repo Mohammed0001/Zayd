@@ -1,0 +1,499 @@
+.secondary-nav{
+    display: none;
+}
+
+
+.success{
+    background-color: #56ae57 !important;
+}
+.success:hover {
+    background-color: #356a35 !important;
+}
+.danger{
+    background-color: #bb2124 !important;
+}
+.danger:hover{
+    background-color: #8b2224 !important;
+}
+
+.dashboardNav{
+    height: 100%;
+    position: fixed;
+    top: 0;
+    padding-top: 90px;
+    padding-bottom: 50px;
+    left: 0;
+    background-image: url("../img/memphis-mini-dark.webp");
+    background-color: #111111;
+    width: 22%;
+    box-shadow: 1px 1px 10px 1px rgba(139, 134, 134, 0.511);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+.dashboardNav div{
+    width: 100%;
+}
+.dashboardNav .profileImage{
+    z-index: 1;
+}
+.dashboardNav .profileImage img{
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    padding: 2px;
+    margin: auto;
+    object-fit: contain;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+    background-color: #eee;
+    border: 3px  solid #122620;
+    box-shadow: 1px 1px 7px 0 #333;
+    position: absolute;
+    right: -2rem;
+}
+
+.dashboardNav .profileDetails{
+    font-weight: bolder;
+    font-size: larger;
+    text-wrap: wrap;
+    width: 60%;
+    margin: 10px auto;
+    display: block;
+    text-align: center;
+    color: #fff;
+}
+
+.dashboardNav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    /* text-align: center; */
+    color: #fff !important;
+}
+
+.secondaryContent li a {
+    color: #fff !important;
+}
+.dashboardNav ul li {
+    padding: 7px 20px;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: 300ms;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -ms-transition: 300ms;
+    -o-transition: 300ms;
+}
+
+.dashboardNav ul li:hover , .dashboardNav ul li.active{
+    color: #808080;
+    transform: scale(1.07);
+    -webkit-transform: scale(1.07);
+    -moz-transform: scale(1.07);
+    -ms-transform: scale(1.07);
+    -o-transform: scale(1.07);
+}
+
+.dashboardNav .logoutBtn button{
+    width: 60%;
+    margin: auto;
+    display: block;
+    background-color: #bb2124;
+    transition: 300ms;
+    padding: 10px;
+    color: #fff;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -ms-transition: 300ms;
+    -o-transition: 300ms;
+    font-weight: bold;
+    cursor: pointer;
+    outline: 0;
+    border: 0;
+}
+
+.dashboardNav .logoutBtn button:hover {
+    transform: scale(1.1 , 1.1);
+    background-color: #8b2224;
+    -webkit-transform: scale(1.1 , 1.1);
+    -moz-transform: scale(1.1 , 1.1);
+    -ms-transform: scale(1.1 , 1.1);
+    -o-transform: scale(1.1 , 1.1);
+}
+
+.dashboardContent{
+    width: 78%;
+    /* background-color: rgba(255, 255, 255, 0.349); */
+    /* position: absolute; */
+    margin-left: 22%;
+    top: 0;
+    min-height: 100%;
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    padding: 0 50px;
+    padding-top: 100px;
+    background-color: #12262045;
+}
+
+.myProfileForm label {
+    display: block;
+}
+
+.myProfileForm input::placeholder {
+    color: #dfdfdf;
+}
+
+.myProfileForm input:focus::placeholder {
+    color: transparent;
+}
+
+
+
+.myProfileForm .ifta-label {
+    margin-bottom: -30px;
+    z-index: 1;
+    position: relative;
+    padding: 0px 10px 0 20px;
+    pointer-events: none;
+}
+
+.myProfileForm .ifta-field {
+    border: 0;
+    border-radius: 6px;
+    padding: 35px 20px 15px;
+    margin: 0 0 20px;
+    width: 100%;
+    box-shadow: inset 0 0 0 1px #ccc;
+}
+
+.myProfileForm .ifta-field:focus {
+    appearance:  none;
+    -webkit-appearance: none;
+    outline: none;
+    box-shadow: inset 0 0 0 2px #d6ad60;
+}
+
+.myProfileForm .group {
+    width: 100%;
+}
+
+.myProfileForm .group:focus-within label {
+    color: #d6ad60 !important;
+}
+.myProfileForm .group{
+    position: relative;
+}
+
+.myProfileForm #showPassword{
+    position: absolute;
+    right: 25px;
+    top: 25%;
+    cursor: pointer;
+}
+.myProfileForm #showPassword:hover {
+    color: #d6ad60;
+}
+
+.updateDetails{
+    width: 100%;
+    display: block;
+    padding: 20px;
+    color: #fff;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: #122620;
+    font-weight: bold;
+    transition: 600ms;
+    -webkit-transition: 600ms;
+    -moz-transition: 600ms;
+    -ms-transition: 600ms;
+    -o-transition: 600ms;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+}
+.updateDetails:hover{
+    transform: scale(1.02);
+    background-color: #122620;
+    -webkit-transform: scale(1.02);
+    -moz-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    -o-transform: scale(1.02);
+}
+
+.productsContainer{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap:wrap;
+}
+
+.productsContainer .productCard{
+    height: 15rem;
+    width: 20%;
+    margin: 10px;
+    transition: 600ms;
+    -webkit-transition: 600ms;
+    -moz-transition: 600ms;
+    -ms-transition: 600ms;
+    -o-transition: 600ms;
+    box-shadow: 1px 1px 10px 5px rgba(139, 134, 134, 0.511);
+}
+.productsContainer .productCard .mainData{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: 600ms;
+    cursor: pointer;
+    -webkit-transition: 600ms;
+    -moz-transition: 600ms;
+    -ms-transition: 600ms;
+    -o-transition: 600ms;
+}
+.productCard .mainData img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 600ms;
+    -webkit-transition: 600ms;
+    -moz-transition: 600ms;
+    -ms-transition: 600ms;
+    -o-transition: 600ms;
+}
+.productCard:hover img {
+    transform: scale(0.99);
+    -webkit-transform: scale(0.99);
+    -moz-transform: scale(0.99);
+    -ms-transform: scale(0.99);
+    -o-transform: scale(0.99);
+    object-fit: contain;
+}
+.productCard .mainData .details{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+    background-color: #122620b4;
+    color: #fff;
+    font-weight: bold;
+}
+.productCard .mainData .price{
+    position: relative;
+    width: 100%;
+    display: block;
+    margin: 0;
+}
+.productCard .mainData .price .bidders {
+    position: absolute;
+    right: 5px;
+}
+.productCard .secondaryData{
+    width: 100%;
+    height: 100%;
+    transition: 600ms;
+    cursor: pointer;
+    -webkit-transition: 600ms;
+    -moz-transition: 600ms;
+    -ms-transition: 600ms;
+    -o-transition: 600ms;
+}
+.productCard .secondaryData .details{
+    position: relative;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    max-height: 100%;
+    background-color: #fff;
+}
+.productCard .secondaryData .details span{
+    display: block;
+    padding: 3px;
+}
+.productCard .secondaryData .editProduct{
+    padding: 10px;
+    width: 100%;
+    margin: 3px auto;
+    background-color: #d6ad60;
+    color: #fff;
+    font-weight: bold;
+    box-sizing: border-box;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: 400ms;
+    -webkit-transition: 400ms;
+    -moz-transition: 400ms;
+    -ms-transition: 400ms;
+    -o-transition: 400ms;
+}
+.productCard .secondaryData .editProduct:hover {
+    background-color: #967333;
+}
+
+
+.productCard .secondaryData .details::-webkit-scrollbar {
+    width:3px;
+}
+.productCard .secondaryData .details::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+.productCard .secondaryData .details::-webkit-scrollbar-thumb{
+    background-color: #122620;
+}
+
+.web {
+    display: flex !important;
+}
+.mobile{
+    display: none !important;
+} 
+
+
+.productBid{
+    margin: auto;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    gap: 10px;
+    background-color: #fff;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    grid-template-columns: 1fr fit-content(70%);
+    
+}
+
+.productBid .bidItem {
+    /* background-color: rgba(255, 0, 0, 0.8); */
+    box-sizing: border-box;
+    padding: 20px;
+    /* font-size: 30px; */
+    width: 100%;
+    box-shadow: 1px 1px 10px 1px rgba(139, 134, 134, 0.511);
+    
+}
+.productBid .bidItem div::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+.productBid .bidItem div::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.productBid .bidItem div::-webkit-scrollbar-thumb {
+    background-color: #122620;
+}
+
+.pImage {
+    grid-column: 1 / span 3;
+    grid-row: 1 / span 4;
+    height: 300px;
+}
+.pImage img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.pImages {
+    grid-column: 1 / span 3;
+}
+.pImages .otherImages{
+    width: 100%;
+    overflow-x: auto;
+    display: flex;
+    flex-wrap: nowrap;
+}
+.pImages img {
+    height: 100px;
+    margin: 6px;
+    object-fit: cover;
+    transition: 300ms;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -ms-transition: 300ms;
+    -o-transition: 300ms;
+    cursor: pointer;
+}
+.pImages img:hover{
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+}
+.pDetails {
+    grid-column: 4 / span 3 ;
+    grid-row: 1 / span 6;
+    min-width: 20rem;
+
+}
+.pData h4{
+    position: relative;
+}
+.pData h4 span{
+    position: absolute;
+    right: 10px;
+    color: #777;
+    font-weight: bold;
+}
+
+.pDesc{
+    grid-column: 1 / span 3;
+}
+.pSuggest {
+    grid-column: 1 / span 6;
+    grid-row: 7 / span 6;
+
+}
+
+.suggestions{
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: auto;
+}
+.suggestions .productCard {
+    min-width: 200px;
+    margin: 15px;
+}
+
+
+
+
+@media screen and (max-width: 700px) {
+    .web {
+        display: none !important;
+    }
+
+    .mobile {
+        display: flex !important;
+        width: 10%;
+    }
+
+    .dashboardContent {
+        width: 90%;
+        margin-left: 10%;
+    }
+
+    .productCard {
+        width: 90% !important;
+    }
+    .productBid{
+        display: block;
+    }
+    .productBid .bidItem{
+        margin: 10px;
+    }
+
+}
