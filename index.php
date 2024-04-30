@@ -5,58 +5,10 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
-<title>My website</title>
+<title>ZAYD | HOME</title>
 </head>
 <body>
-<nav class="mainNav" id="mainNav">
-    <div class="searchForm">
-        <input type="search" name="search" id="searchInput" placeholder="Search..">
-        <button>&#x1F50E;&#xFE0E;</button>
-    </div>
-    <a href="index.html"><img src="img/logo.png" alt="Zayed"></a>
-    <div class="profileBtn">
-        <a class="login-button" href="login.html">Login</a>
-        <a class="login-button" href="signup.html">Signup</a>
-        <a class="login-button hide" href="dashboard.html">Profile</a>
-    </div>
-</nav>
-<div class="secondary-nav" id="secondary-nav">
-    <ul>
-        <li><a href="liveAuctions.html">Live Auctions</a></li>
-        <li><a href="categories.html">Categories</a></li>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About-us</a></li>
-        <li><a href="contact.html">Contact-us</a></li>
-    </ul>
-</div>
-<div class="mobile-nav">
-    <div class="searchForm">
-        <!-- <input type="search" name="search" id="searchInput" placeholder="Search.."> -->
-        <button id="navigateToSearch">&#x1F50E;&#xFE0E;</button>
-    </div>
-    <a href="index.html"><img src="img/logo.png" alt="Zayed"></a>
-    <div><button id="openNav">&#8801;</button></div>
-</div>
-<div class="mobile-menu hide-Nav" id="mobile-menu">
-    <span id="closeNav">&times;</span>
-    <ul>
-        <li><a href="liveAuctions.html">Live Auctions</a></li>
-        <li><a href="categories.html">Categories</a></li>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About-us</a></li>
-        <li><a href="contact.html">Contact-us</a></li>
-    </ul>
-    <div class="profileBtn">
-        <a class="login-button" href="login.html">Login</a>
-        <a class="login-button" href="signup.html">Signup</a>
-        <a class="login-button hide" href="dashboard.html">Profile</a>
-    </div>
-</div>
-<div class="search-nav hide" id="search-nav">
-    <span class="exit" id="exit">&times;</span>
-    <input type="search" name="search" id="searchInputMobile" placeholder="Search..">
-    <button>&#x1F50E;&#xFE0E;</button>
-</div>
+        <?php include "includes/navbar.php" ?>
 
     <div class = "slideshow">
         
@@ -169,19 +121,8 @@
         <img class="adv" src="img/moataz/2.jpg">
     
     </div>
-    
-    <footer>
-        <span>
-            <a href="faq.html">FAQs</a>
-        </span>
-        <p>
-            &copy; 2024 <a href="#">www.zayd.com</a>. All Rights Reserved
-        </p>
-        <span>
-            <a href="privacy.html">Privacy Policy</a> |
-            <a href="terms.html">Terms & Conditions</a>
-        </span>
-    </footer>
+        <?php include "includes/footer.php" ?>
+
     <script src="js/main.js"></script>
     <script src="js/moataz/MoatazJS.js"></script>
 </body>
