@@ -120,7 +120,7 @@
 
 
     <div class="button">
-        <button type="button" id="submitForm" class="updateDetails">Post Now!</button>
+        <button type="submit" id="submitForm" class="updateDetails">Post Now!</button>
     </div>
 
 
