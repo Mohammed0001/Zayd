@@ -16,6 +16,21 @@
 <title>
     SellProduct
 </title>
+
+<?php
+            session_start();
+            if (isset($_SESSION["createdSession"])) {
+                if ( $_SESSION["createdSession"] == "1") {
+                   echo "<script>alert('Created Successfully!');</script>";
+                }else{
+                    echo "<script>alert('Error Creating!');</script>";
+                }
+                unset($_SESSION["createdSession"]);
+
+            }
+        ?>
+
+
     </head>
     <body>
        <?php include "includes/navbar.php";?>
@@ -25,7 +40,7 @@
         <h1>POST YOUR AD</h1>
 
 
-<form class="SellProductForm">
+<form class="SellProductForm" action="functions/moataz.php?type=sellproduct" method="post" id="sellproductform">
 
     <p style="color: red;" id="categoryMsg"> </p>
     <div class="group">
@@ -47,7 +62,7 @@
     <p style="color: red;" id="titleMsg"></p>
     <div class="group">
         <label class="small ifta-label" for="product_title">Product Title</label>
-        <input type="text" class="ifta-field" id="title" placeholder=" Antique Mahogany Writing Desk" />
+        <input type="text" class="ifta-field" id="title" name="name" placeholder=" Antique Mahogany Writing Desk" />
     </div>
     
 
@@ -55,35 +70,35 @@
     <p style="color: red;" id="descriptionMsg"> </p>
     <div class="group">
         <label class="small ifta-label" for="description" >Description</label>
-        <textarea type="description" class="ifta-field" id="description" placeholder=" Beautifully crafted antique writing desk made from solid mahogany wood" ></textarea>
+        <textarea type="description" class="ifta-field" name="description" id="description" placeholder=" Beautifully crafted antique writing desk made from solid mahogany wood" ></textarea>
     </div>
     
 
     <p style="color: red;" id="StartingPriceMsg"> </p>
     <div class="group">
         <label class="small ifta-label" for="starting_price">Starting price</label>
-        <input type="price" class="ifta-field" id="starting_price" placeholder="EGP500" />
+        <input type="price" class="ifta-field"  name="currentBid" id="starting_price" placeholder="EGP500" />
     </div>
     
 
     <p style="color: red;" id="MinBidValueMsg"> </p>
     <div class="group">
         <label class="small ifta-label" for="Minimum_Bid_Value">Minimum Bid Value</label>
-        <input type="price" class="ifta-field" id="Minimum_Bid_Value" placeholder="EGP25"/>
+        <input type="price" class="ifta-field" name="minBid" id="Minimum_Bid_Value" placeholder="EGP25"/>
     </div>
     
 
     <p style="color: red;" id="dateMsg"> </p>
     <div class="group">
         <label class="small ifta-label" for="Closure_Time">Closure Time</label>
-        <input type="date" class="ifta-field"  id="Closure_Time" placeholder="April 30, 2024" />
+        <input type="date" class="ifta-field" name="bidExpiry" id="Closure_Time" placeholder="April 30, 2024" />
     </div>
    
 
     <p style="color: red;" id="locationMsg"> </p>
     <div class="group">
         <label class="small ifta-label" for="location">Location</label>
-        <input type="location" class="ifta-field" id="location" placeholder="New York City, NY" />
+        <input type="location" class="ifta-field" name="location" id="location" placeholder="New York City, NY" />
     </div>
    
 
@@ -91,7 +106,7 @@
         <input
           type="file"
           id="input-file"
-          name="input-file"
+          name="Pimage"
           accept="image/*"
           onchange={handleChange()}
           hidden
