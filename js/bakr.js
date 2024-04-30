@@ -1,7 +1,7 @@
 //import {userData} from  './userData.js';
 document.getElementById("userDataScript").addEventListener("load" , function(){ 
     document.getElementById("userName").innerHTML = "Hi! " + userData["name"].split(' ')[0];
-    document.getElementById("userImage").src = "data:image/png;base64, " + userData["img"];
+    document.getElementById("userImage").src = userData["img"];
     document.getElementById("name").value = userData["name"];
     document.getElementById("username").value = userData["username"];
     document.getElementById("email").value = userData["email"];
@@ -93,7 +93,9 @@ function updateTimeleft() {
         const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
         
         const timeLeft = document.getElementById('timeLeft');
-        timeLeft.textContent  = `${days}D ${hours}H ${minutes}M ${seconds}Sec`;
+        if (timeLeft) {
+            timeLeft.textContent  = `${days}D ${hours}H ${minutes}M ${seconds}Sec`;
+        }
     } else {
         const timeLeft = document.getElementById('timeLeft');
         timeLeft.textContent = 'Expired';

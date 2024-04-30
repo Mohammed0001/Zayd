@@ -16,7 +16,7 @@ function getCookie(cname) {
 
 const userData = {
     "id": getCookie("SSN"),
-    "img": getCookie("img"),
+    "img": getCookie("image"),
     "name": getCookie("name"),
     "email": getCookie("email"),
     "phoneNumber": "+20 123-456-7890",
