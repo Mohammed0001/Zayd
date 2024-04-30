@@ -10,6 +10,15 @@
         <link rel="stylesheet" href="css/nashwa.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <?php
+            session_start();
+            if (isset($_SESSION["isNotValid"])) {
+                if ( $_SESSION["isNotValid"] == "1") {
+                    unset($_SESSION["isNotValid"]);
+                //    echo "<script>alert('Please Enter a valid username or password');</script>";
+                }
+            }
+         ?>
     </head>
     <body>
             <nav class="mainNav" id="mainNav">
@@ -64,16 +73,16 @@
             
         <div class="body">
         <div class="wrapper">
-            <form action="" id="loginForm">
+            <form action="functions/nashwa.php?type=login" id="loginForm" method="post">
                 <h1>Login</h1>
                 <div class="input-box">
-                    <input type="text" placeholder="Username" id="username">
+                    <input type="text" placeholder="Username" name="username" id="username">
                     <i class='bx bxs-user'></i>
                 </div>
                 <p style="color: red;" id="usernameMsg"></p>
 
                 <div class="input-box">
-                    <input type="password"
+                    <input type="password" name="password"
                     placeholder="Password" id="password">
                     <i class='bx bxs-lock-alt'></i>
                 </div>
