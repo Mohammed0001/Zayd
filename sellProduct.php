@@ -47,13 +47,21 @@
     <label class="small ifta-label" for="category">Category</label>
     <input type="text"      class="ifta-field"   id="categoryInput"   name="category" list="categ" placeholder="Category : ">
     <datalist id="categ">
-      <option value="Car">
+    <?php
+        include "includes/db-connect.php";
+        $sql = "SELECT * FROM category;"; 
+        $result = $conn->query($sql); 
+            while($row = $result->fetch_assoc()) {
+                echo "<option value='".$row["name"]."'>";
+            }
+        ?>
+      <!-- <option value="Car">
       <option value="Car plate">
       <option value="Painting">
       <option value="Antiques">
       <option value="Jewelry">
         <option value="Land">
-        <option value="Apartment">
+        <option value="Apartment"> -->
     </datalist>
     
 

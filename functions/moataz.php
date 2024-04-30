@@ -15,7 +15,7 @@ if ($_GET["type"] == "sellproduct") {
     //$img = $_FILES["uimg"]; 
     //$blob = addslashes(file_get_contents($img["tmp_name"]));  
     //".$_COOKIE["SSN"]."
-    $sql = "INSERT INTO  `product`(`id`, `name`, `bidExpiry`, `minBid`,`currentBid` , `description`, `status`, `categoryName`, `userID`) VALUES ('".$_POST['id']."' ,'".$_POST['name']."' ,'".$_POST['bidExpiry']."','".$_POST['minBid']."' ,'".$_POST['currentBid']."','Location : " . $_POST["location"].$_POST['description']."','".$_POST['status']."','".$_POST['category']."','1234567')";
+    $sql = "INSERT INTO  `product`(`id`, `name`, `bidExpiry`, `minBid`,`currentBid` , `description`, `status`, `categoryName`, `userID`) VALUES ('".$_POST['id']."' ,'".$_POST['name']."' ,'".$_POST['bidExpiry']."','".$_POST['minBid']."' ,'".$_POST['currentBid']."','Location : " . $_POST["location"].$_POST['description']."','pending','".$_POST['category']."','1234567')";
     if ($conn->query($sql)) {
         echo "DONE";
         $_SESSION["createdSession"] = "1";
