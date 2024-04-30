@@ -33,7 +33,22 @@
         <button id="prevBtn" class="navCatButton"><i class="fa fa-caret-left"></i></button>
         
         <div class="categContainer" >
-            <a class="categCard"  href="liveAuctions.html?category=Cars">
+            <?php
+                include "includes/db-connect.php";
+                $sql = "SELECT * FROM category"; 
+                $result = $conn->query($sql); 
+                $duration = 86400 * 30;
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo '<a class="categCard"  href="liveAuctions.html?category="'.$row["name"].'>
+                                <i class="'.$row["iconCode"].'"></i>
+                                <h3>'.$row["name"].'</h3>
+                                </a>';
+                    }
+                }
+            ?>
+
+            <!-- <a class="categCard"  href="liveAuctions.html?category=Cars">
                 <i class="fa fa-car"></i>
                 <h3>CARS</h3>
             </a>
@@ -53,7 +68,6 @@
                 <i class="fa fa-mountain"></i>
                 <h3>LAND</h3>
             </a>
-            
             <a class="categCard"   href="liveAuctions.html?category=paints">
                 <i class="fa fa-paint-roller"></i>
                 <h3>PAINTINGS</h3>
@@ -68,6 +82,7 @@
                 <i class="fa fa-gem"></i>
                 <h3>JEWELRY</h3>
             </a>
+        -->
             
         </div>
         <button id="nextBtn" class="navCatButton"><i class="fa fa-caret-right"></i></button>
