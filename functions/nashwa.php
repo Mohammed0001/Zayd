@@ -3,12 +3,12 @@ session_start();
 include "../includes/db-connect.php";
 if (isset($_GET["type"])) {
     if ($_GET["type"] == "login") {
-        $sql = "SELECT * FROM users"; 
+        $sql = "SELECT * FROM users WHERE username = '" . $_POST["username"] . "' AND password = '" . $_POST["password"] . "'" ; 
         $result = $conn->query($sql); // result set 
         $duration = 86400 * 30;
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-                if ($_POST["username"] == $row["username"]  && $_POST["password"] == $row["password"]) {
+                    setcookie("image", $row["image"], time() + ($duration), "/");
                     setcookie("SSN", $row["SSN"], time() + ($duration), "/");
                     setcookie("name", $row["name"], time() + ($duration), "/");
                     setcookie("email", $row["email"], time() + ($duration), "/");
@@ -18,16 +18,17 @@ if (isset($_GET["type"])) {
                     setcookie("image", $row["image"], time() + ($duration), "/");
                     setcookie("type", $row["type"], time() + ($duration), "/");
                     // setcookie("uimg", base64_encode($row["uimg"]), time() + ($duration), "/");
-                   header("Location: ../dashboard.php");
-                echo "VALID";
-                }else {
-                    $_SESSION["isNotValid"] = "1";
-                   header("Location: ../login.php");
-                  echo "INVALID";
+                    header("Location: ../dashboard.php");
+                    echo "VALID";
+                //     break;
+                // }else {
+                    //     echo "INVALID";
+                    // }
                 }
-            }
-        } else {
+            } else {
+                $_SESSION["isNotValid"] = "1";
             echo "0 results";
+            header("Location: ../login.php");
         }
         $conn->close();
     }

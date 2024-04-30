@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<?php
+    if (isset($_COOKIE["SSN"])) {
+        header("Location: dashboard.php");
+    }
+?>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -15,7 +20,7 @@
             if (isset($_SESSION["isNotValid"])) {
                 if ( $_SESSION["isNotValid"] == "1") {
                     unset($_SESSION["isNotValid"]);
-                //    echo "<script>alert('Please Enter a valid username or password');</script>";
+                   echo "<script>alert('Please Enter a valid username or password');</script>";
                 }
             }
          ?>
