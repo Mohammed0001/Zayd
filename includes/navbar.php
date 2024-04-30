@@ -5,18 +5,18 @@
     </div>
     <a href="index.html"><img src="img/logo.png" alt="Zayed"></a>
     <div class="profileBtn">
-        <a class="login-button" href="login.html">Login</a>
-        <a class="login-button" href="signup.html">Signup</a>
-        <a class="login-button hide" href="dashboard.html">Profile</a>
+        <a class="login-button" href="login.php">Login</a>
+        <a class="login-button" href="signup.php">Signup</a>
+        <a class="login-button hide" href="dashboard.php">Profile</a>
     </div>
 </nav>
 <div class="secondary-nav" id="secondary-nav">
     <ul>
-        <li><a href="liveAuctions.html">Live Auctions</a></li>
-        <li><a href="categories.html">Categories</a></li>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About-us</a></li>
-        <li><a href="contact.html">Contact-us</a></li>
+        <li><a href="liveAuctions.php">Live Auctions</a></li>
+        <li><a href="categories.php">Categories</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="about.php">About-us</a></li>
+        <li><a href="contact.php">Contact-us</a></li>
     </ul>
 </div>
 <div class="mobile-nav">
@@ -30,16 +30,16 @@
 <div class="mobile-menu hide-Nav" id="mobile-menu">
     <span id="closeNav">&times;</span>
     <ul>
-        <li><a href="liveAuctions.html">Live Auctions</a></li>
-        <li><a href="categories.html">Categories</a></li>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About-us</a></li>
-        <li><a href="contact.html">Contact-us</a></li>
+        <li><a href="liveAuctions.php">Live Auctions</a></li>
+        <li><a href="categories.php">Categories</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="about.php">About-us</a></li>
+        <li><a href="contact.php">Contact-us</a></li>
     </ul>
     <div class="profileBtn">
-        <a class="login-button" href="login.html">Login</a>
-        <a class="login-button" href="signup.html">Signup</a>
-        <a class="login-button hide" href="dashboard.html">Profile</a>
+        <a class="login-button" href="login.php">Login</a>
+        <a class="login-button" href="signup.php">Signup</a>
+        <a class="login-button hide" href="dashboard.php">Profile</a>
     </div>
 </div>
 <div class="search-nav hide" id="search-nav">
