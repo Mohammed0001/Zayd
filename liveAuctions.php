@@ -31,10 +31,10 @@
 
             }
             $result = $conn->query($sql);
-
+    
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    
+
                     $datetime_from_database = $row["bidExpiry"] ;
 
                     // Convert the datetime from the database to a DateTime object
@@ -47,7 +47,7 @@
                     $time_left = $current_datetime->diff($database_datetime);
 
                     // Format the difference
-                    $time_left_formatted = $time_left->format("%a h, %h h, %i m, %s s");
+                    $time_left_formatted = $time_left->format("%a D, %h H, %i M, %s S");
 
  
                     echo '<div class="product-card">
