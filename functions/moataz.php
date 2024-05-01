@@ -41,7 +41,7 @@ if ($_GET["type"] == "sellproduct") {
 }
 } else if ($_GET["type"] == "addAdmin") {
     $target_dir = "img/uploads/pPic/";
-    $randomNumber = rand();
+    $randomNumber = rand(); 
     $_FILES['pImage']['name'] = $randomNumber .".png" ;
     $file_name = $_FILES['pImage']['name'];
     $file_size =$_FILES['pImage']['size'];
