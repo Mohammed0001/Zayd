@@ -154,42 +154,46 @@
     
         </div>
     
-        <form>
-    
+        <form method="post" action="functions/kareem.php?type=payment">
+
+          <input type="hidden" name="PID" value="<?php echo $_GET['PID'];?>">
+
+          <label for="card-number">Amount</label>
+          <input type="text" name="amount" value="<?php echo $_GET['amount'];?>" disabled/>
+
           <label for="card-number">Card Number</label>
-          <input type="number" id="card-number" placeholder="1234 1234 1234 1234" />
-    
+          <input type="number" name="card_number" id="card-number" placeholder="1234 1234 1234 1234" />
+
           <label for="card-holder">Card Holder</label>
-          <input type="text" id="card-name-input" placeholder="Your Name" />
+          <input type="text" name="card_name" id="card-name-input" placeholder="Your Name" />
     
           <div class="date-cvv">
     
             <!-- Expiration Date -->
             <div>
               <label for="validity">Expires On:</label>
-              <input type="date" id="validity-input" />
+              <input type="date" name="date" id="validity-input" />
             </div>
     
             <!-- CVV -->
             <div>
               <label for="cvv">CVV</label>
-              <input type="password" id="cvv" placeholder="***" />
+              <input type="password" name="cvv" id="cvv" placeholder="***" />
             </div>
     
           </div>
-
+          <br>
+      <br>
+      <br>
+          <div>
+          <button type="submit" class="pay-btn">Pay Now</button>
+        </div>
         </form>
     
-        <div>
-          <button class="pay-btn">Pay Now</button>
-        </div>
+        
 
       </div>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br><br>
+
    <?php include "includes/footer.php";?>
 
     <script src="js/kareem/kareemP.js"></script>
