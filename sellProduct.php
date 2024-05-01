@@ -40,7 +40,7 @@
         <h1>POST YOUR AD</h1>
 
 
-<form class="SellProductForm" action="functions/moataz.php?type=sellproduct" method="post" id="sellproductform">
+<form class="SellProductForm" action="functions/moataz.php?type=sellproduct" method="post" id="sellproductform" enctype="multipart/form-data">
 
     <p style="color: red;" id="categoryMsg"> </p>
     <div class="group">
@@ -114,7 +114,8 @@
         <input
           type="file"
           id="input-file"
-          name="Pimage"
+          name="pImage[]"
+          multiple 
           accept="image/*"
           onchange={handleChange()}
           hidden
