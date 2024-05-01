@@ -11,7 +11,7 @@
 </head>
 
 <body>
-   <?php include "../include/navbar.php";?>
+   <?php include "../includes/navbar.php";?>
 
     <div class="dashboardNav web">
         <div class="profileImage">
@@ -24,6 +24,7 @@
             <ul id="dashboardNav">
                 <li><a href="admin/dashboard.html" style="color: #fff;"><i class="fa fa-user"></i> My Profile</a></li>
                 <li class="active"><a style="color: #fff;"><i class="fa fa-list"></i> Manage Product Sell Requests</a></li>
+                <li><a href="admin/addCategory.php" style="color: #fff;"><i class="fa fa-plus"></i>Add Category</a></li>
                 <!-- <li id="myProductsBtn" view-data="myProducts"><i class="fa fa-table"></i> Manage Products</li> -->
             </ul>
         </div>

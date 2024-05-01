@@ -1,18 +1,25 @@
 <html>
-
+<?php
+            session_start();
+           
+        ?>
 <head>
     <base href="../">
     <link rel="icon" type="image/x-icon" href="img/logo1.png">
-    <title>Zayd | Dashboard</title>
+    <title>Zayd | Manage Products</title>
     <link rel="stylesheet" href="css/master.css">
     <link rel="stylesheet" href="css/bakr.css">
+    <link rel="stylesheet" href="css/moataz/MoatazCSS2.css"> 
+    <link rel="stylesheet" href="css/master.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/af3e7165d7.js" crossorigin="anonymous"></script>
+
+   
+
 </head>
 
 <body>
-        <?php include "../includes/navbar.php";?>
-
+   <?php include "../includes/navbar.php";?>
 
     <div class="dashboardNav web">
         <div class="profileImage">
@@ -23,7 +30,7 @@
         </sapn>
         <div class="mainContent">
             <ul id="dashboardNav">
-                <li id="myProfileBtn" class="active" view-data="myProfile"><i class="fa fa-user"></i> My Profile</li>
+                <li><a href="admin/dashboard.html" style="color: #fff;"><i class="fa fa-user"></i> My Profile</a></li>
                 <li><a href="admin/manageProducts.php" style="color: #fff;"><i class="fa fa-list"></i> Manage Product Sell Requests</a></li>
                 <li><a href="admin/addCategory.php" style="color: #fff;"><i class="fa fa-plus"></i>Add Category</a></li>
                 <!-- <li id="myProductsBtn" view-data="myProducts"><i class="fa fa-table"></i> Manage Products</li> -->
@@ -47,9 +54,8 @@
         
         <div class="mainContent">
             <ul id="dashboardNav">
-                <li id="myProfileBtnMob"view-data="myProfile"><i class="fa fa-user"></i></li>
-                <li><a href="admin/manageProducts.php" style="color: #fff;"><i class="fa fa-list"></i></a></li>
-               
+                <li class="active"><a href="admin/dashboard.html" style="color: #fff;width: 100%;"><i class="fa fa-user"></i></a></li>
+                <li><i class="fa fa-list"></i></li>
                 <!-- <li id="myProductsBtnMob" view-data="myProducts"><i class="fa fa-table"></i></li> -->
            
             </ul>
@@ -70,55 +76,56 @@
     </div>
 
     <div class="dashboardContent">
-        <div class="content" id="myProfile">
-            <h1>My Profile</h1>
-            <form class="myProfileForm">
-            
-                    <div class="group">
-                        <label class="small ifta-label" for="name">Name</label>
-                        <input type="text" class="ifta-field" id="name" placeholder="Bakr" />
-                    </div>
-                    <div class="group">
-                        <label class="small ifta-label" for="username">Username</label>
-                        <input type="text" class="ifta-field" id="username" placeholder="bakoor" />
-                    </div>
 
-                    <div class="group">
-                        <label class="small ifta-label" for="email">Email</label>
-                        <input type="email" class="ifta-field" id="email" placeholder="example@example.com" />
-                    </div>
+        <div class="content">
+            <h1>Manage Category</h1>
+            <form class="SellProductForm" action="functions/moataz.php?type=categories" method="post" id="sellproductform" enctype="multipart/form-data">
+           
+    <p style="color: red;" id="titleMsg"></p>
+    <div class="group">
+        <label class="small ifta-label" for="product_title">Category Name</label>
+        <input type="text" class="ifta-field" id="title" name="name" placeholder="Enter category name..." />
+    </div>
 
-                    <div class="group">
-                        <label class="small ifta-label" for="phonenumber">Phone Number</label>
-                        <input type="text" class="ifta-field" id="phonenumber" placeholder="+20 100 379 4005" />
-                    </div>
+    <p style="color: red;" id="titleMsg"></p>
+    <div class="group">
+        <label class="small ifta-label" for="product_title">Icon</label>
+        <input type="text" class="ifta-field" id="title" name="iconCode" placeholder=".........." />
+    </div>
+    
 
-                    <div class="group">
-                        <label class="small ifta-label" for="dateofbirth">Date Of Birth</label>
-                        <input type="date" class="ifta-field"  id="dateofbirth" placeholder="24/5/2003"  />
-                    </div>
+    <div class="button">
+        <button type="submit" id="submitForm" class="updateDetails">Add Category</button>
+    </div>
 
-                    <div class="group">
-                        <label class="small ifta-label" for="password">Password</label>
-                        <input type="password" class="ifta-field" id="password" disabled placeholder="••••••••••" />
-                        <i id="showPassword" password-field="password" class="fa fa-eye"></i>
-                    </div>
-            
-                    <div class="col-xs-12">
-                        <button type="button" id="submitForm" class="updateDetails">Update Details</button>
-                    </div>
-            </form>
         </div>
-       
-        </div>
-      
+    </div>
+
+    <?php  if (isset($_SESSION["createdSession"])) {
+                if ( $_SESSION["createdSession"] == "1") {?>
+                    
+                        <div class="alert success">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                            Category added Successfully!
+                        </div>
+               <?php } else{?>
+                div class="alert danger">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                            Error adding Category!
+                        </div>
+               <?php }
+                    unset($_SESSION["createdSession"]);
+                }
+            
+            ?>
+    </form>
 
     <script src="js/main.js"></script>
     <script src="js/bakr.js"></script>
     <script>
         document.getElementById("userDataScript").onload = function () { 
             if (userData["type"] == "user") {
-                    window.location.href = 'dashboard.html';
+                    window.location.href = 'admin/dashboard.html';
             };
          };
     </script>
