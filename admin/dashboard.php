@@ -11,8 +11,16 @@
 </head>
 
 <body>
-        <?php include "../includes/navbar.php";?>
-
+        <?php include "../includes/navbar.php";
+session_start();
+    if (!isset($_COOKIE["SSN"])) {
+        header("Location: ../login.php");
+    }else{
+        if ($_COOKIE["type"] == "user") {
+            header("Location: ../dashboard.php");
+        }
+    }
+?>
 
     <div class="dashboardNav web">
         <div class="profileImage">
@@ -32,11 +40,11 @@
         </div>
         <div class="secondaryContent">
             <ul>
-                <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="liveAuctions.html"><i class="fa fa-clock"></i> Live Auctions</a></li>
-                <li><a href="categories.html"><i class="fa fa-layer-group"></i> Categories</a></li>
-                <li><a href="about.html"><i class="fa fa-address-card"></i> About-us</a></li>
-                <li><a href="contact.html"><i class="fa fa-phone"></i> Contact-us</a></li>
+                <li><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="liveAuctions.php"><i class="fa fa-clock"></i> Live Auctions</a></li>
+                <li><a href="categories.php"><i class="fa fa-layer-group"></i> Categories</a></li>
+                <li><a href="about.php"><i class="fa fa-address-card"></i> About-us</a></li>
+                <li><a href="contact.php"><i class="fa fa-phone"></i> Contact-us</a></li>
             </ul>
         </div>
         <div class="logoutBtn">
@@ -57,12 +65,12 @@
         </div>
         <!-- <div class="secondaryContent">
             <ul>
-                <li><a href="sellProduct.html"><i class="fa fa-plus"></i></a></li>
-                <li><a href="index.html"><i class="fa fa-home"></i></a></li>
-                <li><a href="liveAuctions.html"><i class="fa fa-clock"></i></a></li>
-                <li><a href="categories.html"><i class="fa fa-layer-group"></i></a></li>
-                <li><a href="about.html"><i class="fa fa-address-card"></i></a></li>
-                <li><a href="contact.html"><i class="fa fa-phone"></i></a></li>
+                <li><a href="sellProduct.php"><i class="fa fa-plus"></i></a></li>
+                <li><a href="index.php"><i class="fa fa-home"></i></a></li>
+                <li><a href="liveAuctions.php"><i class="fa fa-clock"></i></a></li>
+                <li><a href="categories.php"><i class="fa fa-layer-group"></i></a></li>
+                <li><a href="about.php"><i class="fa fa-address-card"></i></a></li>
+                <li><a href="contact.php"><i class="fa fa-phone"></i></a></li>
             </ul>
         </div> -->
         <div class="logoutBtn">
@@ -74,34 +82,37 @@
         <div class="content" id="myProfile">
             <h1>My Profile</h1>
             <form class="myProfileForm">
-            
+                    <div class="group">
+                        <label class="small ifta-label" for="ssn">SSN</label>
+                        <input type="number" class="ifta-field" id="ssn" disabled placeholder="12345678901234" />
+                    </div>
                     <div class="group">
                         <label class="small ifta-label" for="name">Name</label>
-                        <input type="text" class="ifta-field" id="name" placeholder="Bakr" />
+                        <input type="text" name="name" class="ifta-field" id="name" placeholder="Bakr" />
                     </div>
                     <div class="group">
                         <label class="small ifta-label" for="username">Username</label>
-                        <input type="text" class="ifta-field" id="username" placeholder="bakoor" />
+                        <input type="text" name="username" class="ifta-field" id="username" placeholder="bakoor" />
                     </div>
 
                     <div class="group">
                         <label class="small ifta-label" for="email">Email</label>
-                        <input type="email" class="ifta-field" id="email" placeholder="example@example.com" />
+                        <input type="email" name="email" class="ifta-field" id="email" placeholder="example@example.com" />
                     </div>
 
-                    <div class="group">
+                    <!-- <div class="group">
                         <label class="small ifta-label" for="phonenumber">Phone Number</label>
                         <input type="text" class="ifta-field" id="phonenumber" placeholder="+20 100 379 4005" />
-                    </div>
+                    </div> -->
 
                     <div class="group">
                         <label class="small ifta-label" for="dateofbirth">Date Of Birth</label>
-                        <input type="date" class="ifta-field"  id="dateofbirth" placeholder="24/5/2003"  />
+                        <input type="date" class="ifta-field" name="dateofbirth" id="dateofbirth" placeholder="24/5/2003"  />
                     </div>
 
                     <div class="group">
                         <label class="small ifta-label" for="password">Password</label>
-                        <input type="password" class="ifta-field" id="password" disabled placeholder="••••••••••" />
+                        <input type="password" name="password" class="ifta-field" id="password" disabled placeholder="••••••••••" />
                         <i id="showPassword" password-field="password" class="fa fa-eye"></i>
                     </div>
             
@@ -116,13 +127,7 @@
 
     <script src="js/main.js"></script>
     <script src="js/bakr.js"></script>
-    <script>
-        document.getElementById("userDataScript").onload = function () { 
-            if (userData["type"] == "user") {
-                    window.location.href = 'dashboard.html';
-            };
-         };
-    </script>
+    
 </body>
 
 </html>

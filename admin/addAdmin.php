@@ -1,8 +1,14 @@
 <html>
-<?php
-            session_start();
-           
-        ?>
+        <?php include "../includes/navbar.php";
+session_start();
+    if (!isset($_COOKIE["SSN"])) {
+        header("Location: ../login.php");
+    }else{
+        if ($_COOKIE["type"] == "user") {
+            header("Location: ../dashboard.php");
+        }
+    }
+?>
 <head>
     <base href="../">
     <link rel="icon" type="image/x-icon" href="img/logo1.png">
@@ -14,7 +20,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/af3e7165d7.js" crossorigin="anonymous"></script>
 
-   
+     <style>
+        .secondary-nav{display:none;}
+    </style>
 
 </head>
 
@@ -30,20 +38,20 @@
         </sapn>
         <div class="mainContent">
             <ul id="dashboardNav">
-                <li><a href="admin/dashboard.html" style="color: #fff;"><i class="fa fa-user"></i> My Profile</a></li>
+                <li><a href="admin/dashboard.php" style="color: #fff;"><i class="fa fa-user"></i> My Profile</a></li>
                 <li><a href="admin/manageProducts.php" style="color: #fff;"><i class="fa fa-list"></i> Manage Product Sell Requests</a></li>
                 <li><a href="admin/addCategory.php" style="color: #fff;"><i class="fa fa-plus"></i>Add Category</a></li>
-                <li><a href="admin/addAdmin.php" style="color: #fff;"><i class="fa fa-user-plus"></i> Add Admin</a></li>
+                <li class="active"><a href="admin/addAdmin.php" style="color: #fff;"><i class="fa fa-user-plus"></i> Add Admin</a></li>
                 <!-- <li id="myProductsBtn" view-data="myProducts"><i class="fa fa-table"></i> Manage Products</li> -->
             </ul>
         </div>
         <div class="secondaryContent">
             <ul>
-                <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="liveAuctions.html"><i class="fa fa-clock"></i> Live Auctions</a></li>
-                <li><a href="categories.html"><i class="fa fa-layer-group"></i> Categories</a></li>
-                <li><a href="about.html"><i class="fa fa-address-card"></i> About-us</a></li>
-                <li><a href="contact.html"><i class="fa fa-phone"></i> Contact-us</a></li>
+                <li><a href="index.php"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="liveAuctions.php"><i class="fa fa-clock"></i> Live Auctions</a></li>
+                <li><a href="categories.php"><i class="fa fa-layer-group"></i> Categories</a></li>
+                <li><a href="about.php"><i class="fa fa-address-card"></i> About-us</a></li>
+                <li><a href="contact.php"><i class="fa fa-phone"></i> Contact-us</a></li>
             </ul>
         </div>
         <div class="logoutBtn">
@@ -55,7 +63,7 @@
         
         <div class="mainContent">
             <ul id="dashboardNav">
-                <li class="active"><a href="admin/dashboard.html" style="color: #fff;width: 100%;"><i class="fa fa-user"></i></a></li>
+                <li class="active"><a href="admin/dashboard.php" style="color: #fff;width: 100%;"><i class="fa fa-user"></i></a></li>
                 <li><i class="fa fa-list"></i></li>
                 <!-- <li id="myProductsBtnMob" view-data="myProducts"><i class="fa fa-table"></i></li> -->
            
@@ -63,12 +71,12 @@
         </div>
         <!-- <div class="secondaryContent">
             <ul>
-                <li><a href="sellProduct.html"><i class="fa fa-plus"></i></a></li>
-                <li><a href="index.html"><i class="fa fa-home"></i></a></li>
-                <li><a href="liveAuctions.html"><i class="fa fa-clock"></i></a></li>
-                <li><a href="categories.html"><i class="fa fa-layer-group"></i></a></li>
-                <li><a href="about.html"><i class="fa fa-address-card"></i></a></li>
-                <li><a href="contact.html"><i class="fa fa-phone"></i></a></li>
+                <li><a href="sellProduct.php"><i class="fa fa-plus"></i></a></li>
+                <li><a href="index.php"><i class="fa fa-home"></i></a></li>
+                <li><a href="liveAuctions.php"><i class="fa fa-clock"></i></a></li>
+                <li><a href="categories.php"><i class="fa fa-layer-group"></i></a></li>
+                <li><a href="about.php"><i class="fa fa-address-card"></i></a></li>
+                <li><a href="contact.php"><i class="fa fa-phone"></i></a></li>
             </ul>
         </div> -->
         <div class="logoutBtn">
@@ -134,6 +142,7 @@
         </div>
     </div>
 
+    </form>
     <?php  if (isset($_SESSION["createdSession"])) {
                 if ( $_SESSION["createdSession"] == "1") {?>
                     
@@ -151,17 +160,10 @@
                 }
             
             ?>
-    </form>
 
     <script src="js/main.js"></script>
     <script src="js/bakr.js"></script>
-    <script>
-        document.getElementById("userDataScript").onload = function () { 
-            if (userData["type"] == "user") {
-                    window.location.href = 'admin/dashboard.html';
-            };
-         };
-    </script>
+
 </body>
 
-</html>
+        </html>
