@@ -82,6 +82,47 @@ session_start();
     <div class="dashboardContent">
         <div class="content" id="myProfile">
             <h1>My Profile</h1>
+
+            <form class="myProfileForm" action="functions/kareem.php?type=updateAdmin" method="post">
+                    <div class="group">
+                        <label class="small ifta-label" for="ssn">SSN</label>
+                        <input type="number" class="ifta-field" id="ssn" disabled placeholder="12345678901234" />
+                    </div>
+                    <div class="group">
+                        <label class="small ifta-label" for="name">Name</label>
+                        <input type="text" class="ifta-field" id="name" name="name" placeholder="Bakr" />
+                    </div>
+                    <div class="group">
+                        <label class="small ifta-label" for="username">Username</label>
+                        <input type="text" class="ifta-field" id="username" name="username" placeholder="bakoor" />
+                    </div>
+
+                    <div class="group">
+                        <label class="small ifta-label" for="email">Email</label>
+                        <input type="email" class="ifta-field" id="email" name="email" placeholder="example@example.com" />
+                    </div>
+
+                    <!-- <div class="group">
+                        <label class="small ifta-label" for="phonenumber">Phone Number</label>
+                        <input type="text" class="ifta-field" id="phonenumber" placeholder="+20 100 379 4005" />
+                    </div> -->
+
+                    <div class="group">
+                        <label class="small ifta-label" for="dateofbirth">Date Of Birth</label>
+                        <input type="date" class="ifta-field"  id="dateofbirth" name="dateofbirth" placeholder="24/5/2003"  />
+                    </div>
+
+                    <div class="group">
+                        <label class="small ifta-label" for="password">Password</label>
+                        <input type="password" class="ifta-field" id="password" name="password" disabled placeholder="••••••••••" />
+                        <i id="showPassword" password-field="password" class="fa fa-eye"></i>
+                    </div>
+            
+                    <div class="col-xs-12">
+                        <button type="submit" id="submitForm" class="updateDetails">Update Details</button>
+                    </div>
+            </form>
+
             <form class="myProfileForm">
                     <div class="group">
                         <label class="small ifta-label" for="ssn">SSN</label>
@@ -126,6 +167,8 @@ session_start();
         </div>
       
 
+
+        
     <script src="js/main.js"></script>
     <script src="js/bakr.js"></script>
     

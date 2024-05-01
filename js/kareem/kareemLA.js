@@ -25,61 +25,6 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function () {
-    var sixtyMinutes = 60 * 60; 
-    $('#timeLeft2').each(function () {
-        startTimer(sixtyMinutes, $(this));
-    });
-});
-
-$(document).ready(function () {
-    var fortyMinutes = 60 * 40; 
-    $('#timeLeft3').each(function () {
-        startTimer(fortyMinutes, $(this));
-    });
-});
-
-$(document).ready(function () {
-    var twentyMinutes = 60 * 20; 
-    $('#timeLeft4').each(function () {
-        startTimer(twentyMinutes, $(this));
-    });
-});
-
-$(document).ready(function () {
-    var thirtyMinutes = 60 * 30; 
-    $('#timeLeft5').each(function () {
-        startTimer(thirtyMinutes, $(this));
-    });
-});
-
-$(document).ready(function () {
-    var fortyfiveMinutes = 60 * 45; 
-    $('#timeLeft6').each(function () {
-        startTimer(fortyfiveMinutes, $(this));
-    });
-});
-
-$(document).ready(function () {
-    var seventyfiveMinutes = 60 * 75; 
-    $('#timeLeft7').each(function () {
-        startTimer(seventyfiveMinutes, $(this));
-    });
-});
-
-$(document).ready(function () {
-    var onetwentyMinutes = 60 * 120; 
-    $('#timeLeft8').each(function () {
-        startTimer(onetwentyMinutes, $(this));
-    });
-});
-
-$(document).ready(function () {
-    var twofortyMinutes = 60 * 240; 
-    $('#timeLeft9').each(function () {
-        startTimer(twofortyMinutes, $(this));
-    });
-});
 
 $(".bid-now-btn").click(function(){
     window.location.href = 'bidding.html?id=1';
