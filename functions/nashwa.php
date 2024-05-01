@@ -32,7 +32,7 @@ if (isset($_GET["type"])) {
         }
         $conn->close();
     }
-    if ($_GET["type"] == "logout") {
+    else if ($_GET["type"] == "logout") {
         setcookie("SSN", "", time() - 3600 , "/");
         setcookie("name", "", time() - 3600, "/");
         setcookie("email", "", time() - 3600, "/");
@@ -43,7 +43,7 @@ if (isset($_GET["type"])) {
         setcookie("type", "", time() - 3600, "/");
         header("Location: ../login.php");
     }
-    if ($_GET["type"] == "signup") {
+    else if ($_GET["type"] == "signup") {
         $target_dir = "img/uploads/pPic/";
         $randomNumber = rand();
         $_FILES['pImage']['name'] = $randomNumber .".png" ;
@@ -51,11 +51,8 @@ if (isset($_GET["type"])) {
         $file_size =$_FILES['pImage']['size'];
         $file_tmp =$_FILES['pImage']['tmp_name'];
         $file_type=$_FILES['pImage']['type'];
-        // $file_ext=strtolower(end(explode('.',$_FILES['fileToUpload']['name'])));
         $target_file = $target_dir . basename($_FILES["pImage"]["name"]);
         move_uploaded_file($file_tmp,"../img/uploads/pPic/".$file_name);
-        //$img = $_FILES["uimg"];
-        //$blob = addslashes(file_get_contents($img["tmp_name"]));  
         $sql = "INSERT INTO  `users`(`SSN`, `name`, `email`, `password`, `username`, `dateOfBirth`, `image`, `type`) VALUES ('".$_POST['SSN']."' ,'".$_POST['name']."' ,'".$_POST['email']."','".$_POST['password']."' ,'".$_POST['username']."','".$_POST['dateOfBirth']."','".$target_file."','user')";
         if ($conn->query($sql)) {
             echo "DONE";
@@ -65,6 +62,9 @@ if (isset($_GET["type"])) {
             $_SESSION["createdSession"] = "0";
             header("Location: ../signup.php");
         }
+    }
+    else if ($_GET["type"] == "") {
+     
     }
 }
 ?>

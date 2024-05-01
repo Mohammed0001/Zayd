@@ -3,7 +3,7 @@
         <input type="search" name="search" id="searchInput" placeholder="Search..">
         <button>&#x1F50E;&#xFE0E;</button>
     </div>
-    <a href="index.html"><img src="img/logo.png" alt="Zayed"></a>
+    <a href="index.php"><img src="img/logo.png" alt="Zayed"></a>
     <div class="profileBtn">
         <?php if (isset($_COOKIE["SSN"])) {?>
          <a class="login-button" href="dashboard.php">Profile</a>
@@ -42,9 +42,12 @@
         <li><a href="contact.php">Contact-us</a></li>
     </ul>
     <div class="profileBtn">
-        <a class="login-button" href="login.php">Login</a>
-        <a class="login-button" href="signup.php">Signup</a>
-        <a class="login-button hide" href="dashboard.php">Profile</a>
+         <?php if (isset($_COOKIE["SSN"])) {?>
+         <a class="login-button" href="dashboard.php">Profile</a>
+        <?php } else {?>
+            <a class="login-button" href="login.php">Login</a>
+            <a class="login-button" href="signup.php">Signup</a>
+        <?php } ?> 
     </div>
 </div>
 <div class="search-nav hide" id="search-nav">

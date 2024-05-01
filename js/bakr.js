@@ -1,15 +1,39 @@
 //import {userData} from  './userData.js';
-document.getElementById("userDataScript").addEventListener("load" , function(){ 
-    document.getElementById("userName").innerHTML = "Hi! " + userData["name"].split(' ')[0];
-    document.getElementById("userImage").src = userData["img"];
-    document.getElementById("name").value = userData["name"];
-    document.getElementById("username").value = userData["username"];
-    document.getElementById("email").value = userData["email"];
-    document.getElementById("phonenumber").value = userData["phoneNumber"];
-    document.getElementById("dateofbirth").value = userData["dateofbirth"];
-    document.getElementById("password").value = userData["password"];
-    
-});
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+// function () {
+    // document.getElementById("userDataScript").addEventListener("load" , function(){ });
+    // document.getElementById("userName").innerHTML = "Hi! " + userData["name"].split(' ')[0];
+    // document.getElementById("userImage").src = userData["img"];
+    // document.getElementById("name").value = userData["name"];
+    // document.getElementById("username").value = userData["username"];
+    // document.getElementById("email").value = userData["email"];
+    // document.getElementById("phonenumber").value = userData["phoneNumber"];
+    // document.getElementById("dateofbirth").value = userData["dateofbirth"];
+    // document.getElementById("password").value = userData["password"];
+    document.getElementById("userName").innerHTML = "Hi! " + getCookie("name").split(' ')[0];
+    document.getElementById("ssn").value = getCookie("SSN");
+    document.getElementById("userImage").src = getCookie("image");
+    document.getElementById("name").value = getCookie("name");
+    document.getElementById("username").value = getCookie("username");
+    document.getElementById("email").value = getCookie("email");
+    // document.getElementById("phonenumber").value = getCookie("name")
+    document.getElementById("dateofbirth").value = getCookie("dateOfBirth");
+    document.getElementById("password").value = getCookie("password");
+// };
 
 $(document).ready(function(){
     var lastOpened = "myProfile";
@@ -106,4 +130,24 @@ $("#submitBid").click(function () {
 
 $("#logoutBtn").click(function(){
     window.location.href = "functions/nashwa.php?type=logout";
+});
+
+$("#submitForm").click(function () {
+    uname  = $("#name").val();
+    username  = $("#username").val();
+    email  = $("#email").val();
+    dateOfBirth  = $("#dateofbirth").val();
+    password  = $("#password").val();
+    newData = {uname, username , email, dateOfBirth, password};
+    $.ajax({
+        type:'POST',
+        dataType: 'json',
+        url:'functions/bakr.php?type=updateData',
+        data:{newData},
+        success:function(response){
+            alert("Updated Successfully!");
+        }
+    });
+
+
 });

@@ -1,5 +1,7 @@
 <html>
 <?php
+include "includes/db-connect.php";
+session_start();
     if (!isset($_COOKIE["SSN"])) {
         header("Location: login.php");
     }
@@ -15,7 +17,12 @@
 
 <body>
     <?php include "includes/navbar.php";?>
-
+   <?php if (isset($_COOKIE["SSN"])) {?>
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            Error ! Updating Your data
+        </div>
+    <?php } ?>
     <div class="dashboardNav web">
         <div class="profileImage">
             <img src="img/myPic.jpg" id="userImage" alt="MyProfilePicture">
@@ -75,14 +82,17 @@
         <div class="content" id="myProfile">
             <h1>My Profile</h1>
             <form class="myProfileForm">
-            
+                    <div class="group">
+                        <label class="small ifta-label" for="ssn">SSN</label>
+                        <input type="number" class="ifta-field" id="ssn" disabled placeholder="12345678901234" />
+                    </div>
                     <div class="group">
                         <label class="small ifta-label" for="name">Name</label>
                         <input type="text" class="ifta-field" id="name" placeholder="Bakr" />
                     </div>
                     <div class="group">
                         <label class="small ifta-label" for="username">Username</label>
-                        <input type="text" class="ifta-field" id="username" placeholder="bakoor" />
+                        <input type="text" class="ifta-field" id="username"  placeholder="bakoor" />
                     </div>
 
                     <div class="group">
@@ -90,10 +100,10 @@
                         <input type="email" class="ifta-field" id="email" placeholder="example@example.com" />
                     </div>
 
-                    <div class="group">
+                    <!-- <div class="group">
                         <label class="small ifta-label" for="phonenumber">Phone Number</label>
                         <input type="text" class="ifta-field" id="phonenumber" placeholder="+20 100 379 4005" />
-                    </div>
+                    </div> -->
 
                     <div class="group">
                         <label class="small ifta-label" for="dateofbirth">Date Of Birth</label>
@@ -111,6 +121,7 @@
                     </div>
             </form>
         </div>
+         
         <div class="content hide" id="myProducts">
             <h1>My Products</h1>
             <div class="productsContainer">
@@ -296,23 +307,36 @@
         <div class="content hide" id="awardedAuctions">
             <h1>Awarded Auctions</h1>
             <div class="productsContainer">
-                <div class="productCard">
-                    <div class="mainData">
-                        <img src="https://americancollectors.com/wp-content/uploads/1st-article-photo-1-690x370-1.jpg" alt="MyProduct">
-                        <div class="details">
-                            <h3 class="pName">Antique Mahogany Writing Desk</h3>
-                            <span class="price">1,000 EGP</span>
-                        </div>
-                    </div>
-                    <div class="secondaryData hide">
-                        <div class="details">
-                            <h3 class="pName">Antique Mahogany Writing Desk</h3>
-                            <p class="pDesc">Beautifully crafted antique writing desk made from solid mahogany wood. Features intricate
-                                carvings and a leather writing surface. Ideal for collectors or antique enthusiasts.</p>
-                            <span id="price">Awarded At: 1,000 EGP </span>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                //current bid , primary image , current price count bidders , 
+                // $sql = "SELECT product.* , file  FROM product, pImage bid, WHERE pImage.isPrimary = 1 AND "; 
+                // $result = $conn->query($sql); 
+                // $duration = 86400 * 30;
+                // if ($result->num_rows > 0) {
+                //     while($row = $result->fetch_assoc()) {
+                //         echo '
+                //         <div class="productCard">
+                //             <div class="mainData">
+                //                 <img src="https://americancollectors.com/wp-content/uploads/1st-article-photo-1-690x370-1.jpg" alt="MyProduct">
+                //                 <div class="details">
+                //                     <h3 class="pName">Antique Mahogany Writing Desk</h3>
+                //                     <span class="price">1,000 EGP</span>
+                //                 </div>
+                //             </div>
+                //             <div class="secondaryData hide">
+                //                 <div class="details">
+                //                     <h3 class="pName">Antique Mahogany Writing Desk</h3>
+                //                     <p class="pDesc">Beautifully crafted antique writing desk made from solid mahogany wood. Features intricate
+                //                         carvings and a leather writing surface. Ideal for collectors or antique enthusiasts.</p>
+                //                     <span id="price">Awarded At: 1,000 EGP </span>
+                //                 </div>
+                //             </div>
+                //         </div>
+                //         ';
+                //     }
+                // }
+            ?>
+                
                 <div class="productCard">
                     <div class="mainData">
                         <img src="https://americancollectors.com/wp-content/uploads/1st-article-photo-1-690x370-1.jpg" alt="MyProduct">
@@ -334,15 +358,16 @@
         </div>
     </div>
 
+    <!-- <script src="js/userData.js"></script> -->
     <script src="js/main.js"></script>
     <script src="js/bakr.js"></script>
-    <script>
+    <!-- <script>
         document.getElementById("userDataScript").onload = function () { 
             if (userData["type"] == "admin") {
                     window.location.href = 'admin/dashboard.php';
             };
          };
-    </script>
+    </script> -->
 </body>
 
 </html>

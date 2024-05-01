@@ -12,13 +12,13 @@
         
 });
 
-  var script = document.createElement('script');
+//   var script = document.createElement('script');
     
-    // Set the source attribute to file1.js
-    script.src = 'js/userData.js';
-    script.id = "userDataScript";
-    // Append the script element to the document body
-    document.body.appendChild(script);
+//     // Set the source attribute to file1.js
+//     script.src = 'js/userData.js';
+//     script.id = "userDataScript";
+//     // Append the script element to the document body
+//     document.body.appendChild(script);
 
 $(document).ready(function () {
     $("#closeNav").click(function () {
