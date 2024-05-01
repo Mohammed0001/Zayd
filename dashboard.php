@@ -17,12 +17,7 @@ session_start();
 
 <body>
     <?php include "includes/navbar.php";?>
-   <?php if (isset($_COOKIE["SSN"])) {?>
-        <div class="alert">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            Error ! Updating Your data
-        </div>
-    <?php } ?>
+   
     <div class="dashboardNav web">
         <div class="profileImage">
             <img src="img/myPic.jpg" id="userImage" alt="MyProfilePicture">
@@ -357,7 +352,12 @@ session_start();
             </div>
         </div>
     </div>
-
+        <?php if (isset($_COOKIE["SSN"])) {?>
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                Error ! Updating Your data
+            </div>
+        <?php } ?>
     <!-- <script src="js/userData.js"></script> -->
     <script src="js/main.js"></script>
     <script src="js/bakr.js"></script>

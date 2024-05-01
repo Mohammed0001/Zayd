@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <?php
+            session_start();
+
     if (isset($_COOKIE["SSN"])) {
         header("Location: dashboard.php");
     }
@@ -15,15 +17,7 @@
         <link rel="stylesheet" href="css/nashwa.css">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <?php
-            session_start();
-            if (isset($_SESSION["isNotValid"])) {
-                if ( $_SESSION["isNotValid"] == "1") {
-                    unset($_SESSION["isNotValid"]);
-                   echo "<script>alert('Please Enter a valid username or password');</script>";
-                }
-            }
-         ?>
+        
     </head>
     <body>
                <?php include "includes/navbar.php";?>
@@ -57,7 +51,19 @@
                 </div>
             </form>
         </div>
-
+        <?php  if (isset($_SESSION["isNotValid"])) {
+                if ( $_SESSION["isNotValid"] == "1") {?>
+                    
+                        <div class="alert">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                            Invalid Username or Password
+                        </div>
+               <?php 
+                    unset($_SESSION["isNotValid"]);
+                }
+            }
+            ?>
+            
         </div>
         <?php include "includes/footer.php";?>
         <script src="js/Nashwa.js"></script>
