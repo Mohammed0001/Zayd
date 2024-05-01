@@ -39,7 +39,7 @@
                 $duration = 86400 * 30;
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
-                        echo '<a class="categCard"  href="liveAuctions.html?category="'.$row["name"].'>
+                        echo '<a class="categCard"  href="liveAuctions.php?category='.$row["name"].'">
                                 <i class="'.$row["iconCode"].'"></i>
                                 <h3>'.$row["name"].'</h3>
                                 </a>';

@@ -99,7 +99,7 @@
     <p style="color: red;" id="dateMsg"> </p>
     <div class="group">
         <label class="small ifta-label" for="Closure_Time">Closure Time</label>
-        <input type="date" class="ifta-field" name="bidExpiry" id="Closure_Time" placeholder="April 30, 2024" />
+        <input type="datetime-local" class="ifta-field" name="bidExpiry" id="Closure_Time" placeholder="April 30, 2024" />
     </div>
    
 
