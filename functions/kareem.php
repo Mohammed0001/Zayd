@@ -9,7 +9,7 @@ include "../includes/db-connect.php";
         if ($conn->query($sql)) {
             echo "DONE";
             $_SESSION["createdSession"] = "1";
-            // header("Location: ../payment.php");
+            header("Location: ../liveAuctions.php");
         }else{
             $_SESSION["createdSession"] = "0";
             // header("Location: ../payment.php");
