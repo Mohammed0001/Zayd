@@ -4,6 +4,10 @@ include "includes/db-connect.php";
 session_start();
     if (!isset($_COOKIE["SSN"])) {
         header("Location: login.php");
+    }else{
+        if ($_COOKIE["type"] == "admin") {
+            header("Location: admin/dashboard.php");
+        }
     }
 ?>
 <head>
@@ -76,23 +80,23 @@ session_start();
     <div class="dashboardContent">
         <div class="content" id="myProfile">
             <h1>My Profile</h1>
-            <form class="myProfileForm">
+            <form class="myProfileForm" action="functions/bakr.php?type=updateUser" method="post">
                     <div class="group">
                         <label class="small ifta-label" for="ssn">SSN</label>
                         <input type="number" class="ifta-field" id="ssn" disabled placeholder="12345678901234" />
                     </div>
                     <div class="group">
                         <label class="small ifta-label" for="name">Name</label>
-                        <input type="text" class="ifta-field" id="name" placeholder="Bakr" />
+                        <input type="text" class="ifta-field" id="name" name="name" placeholder="Bakr" />
                     </div>
                     <div class="group">
                         <label class="small ifta-label" for="username">Username</label>
-                        <input type="text" class="ifta-field" id="username"  placeholder="bakoor" />
+                        <input type="text" class="ifta-field" id="username" name="username" placeholder="bakoor" />
                     </div>
 
                     <div class="group">
                         <label class="small ifta-label" for="email">Email</label>
-                        <input type="email" class="ifta-field" id="email" placeholder="example@example.com" />
+                        <input type="email" class="ifta-field" id="email" name="email" placeholder="example@example.com" />
                     </div>
 
                     <!-- <div class="group">
@@ -102,17 +106,17 @@ session_start();
 
                     <div class="group">
                         <label class="small ifta-label" for="dateofbirth">Date Of Birth</label>
-                        <input type="date" class="ifta-field"  id="dateofbirth" placeholder="24/5/2003"  />
+                        <input type="date" class="ifta-field"  id="dateofbirth" name="dateofbirth" placeholder="24/5/2003"  />
                     </div>
 
                     <div class="group">
                         <label class="small ifta-label" for="password">Password</label>
-                        <input type="password" class="ifta-field" id="password" disabled placeholder="••••••••••" />
+                        <input type="password" class="ifta-field" id="password" name="password" disabled placeholder="••••••••••" />
                         <i id="showPassword" password-field="password" class="fa fa-eye"></i>
                     </div>
             
                     <div class="col-xs-12">
-                        <button type="button" id="submitForm" class="updateDetails">Update Details</button>
+                        <button type="submit" id="submitForm" class="updateDetails">Update Details</button>
                     </div>
             </form>
         </div>
@@ -244,12 +248,20 @@ session_start();
             </div>
         </div>
     </div>
-        <?php if (isset($_COOKIE["SSN"])) {?>
+        <?php if (isset($_SESSION["updatedS"])) {
+                if ($_SESSION["updatedS"] =="1") {?>
+                <div class="alert success">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    Updated Successfully!
+                </div>
+        <?php }else{?>
             <div class="alert danger">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                Error ! Updating Your data
-            </div>
-        <?php } ?>
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    Error ! Updating Your data
+                </div>
+        <?php }
+        unset($_SESSION["updatedS"]);
+     } ?>
     <!-- <script src="js/userData.js"></script> -->
     <script src="js/main.js"></script>
     <script src="js/bakr.js"></script>
