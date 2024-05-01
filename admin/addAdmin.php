@@ -79,24 +79,56 @@
     <div class="dashboardContent">
 
         <div class="content">
-            <h1>Manage Category</h1>
-            <form class="SellProductForm" action="functions/moataz.php?type=categories" method="post" id="sellproductform" enctype="multipart/form-data">
+            <h1>Add Admin</h1>
+            <form class="SellProductForm" action="functions/moataz.php?type=addAdmin" method="post" id="sellproductform" enctype="multipart/form-data">
            
-    <p style="color: red;" id="titleMsg"></p>
-    <div class="group">
-        <label class="small ifta-label" for="product_title">Category Name</label>
-        <input type="text" class="ifta-field" id="title" name="name" placeholder="Enter category name..." />
-    </div>
-
-    <p style="color: red;" id="titleMsg"></p>
-    <div class="group">
-        <label class="small ifta-label" for="product_title">Icon</label>
-        <input type="text" class="ifta-field" id="title" name="iconCode" placeholder=".........." />
-    </div>
+           
     
 
+        
+                <p style="color: red;" id="titleMsg"></p>
+    <div class="group" >
+        <label class="small ifta-label" for="Image">Personal photo</label>
+        <input type="file" accept="Image/*" style="background-color:white;" class="ifta-field" placeholder="pImage" name="pImage" id="pImage">
+    </div>
+    <div class="group">
+        <label class="small ifta-label" for="SSN">SSN</label>
+        <input type="text" class="ifta-field" id="title" name="SSN" placeholder="Enter Admin SSN..." />
+    </div>
+
+
+    <p style="color: red;" id="titleMsg"></p>
+    <div class="group">
+        <label class="small ifta-label" for="Name">Name</label>
+        <input type="text" class="ifta-field" id="title" name="name" placeholder="Enter Admin Name..." />
+    </div>
+
+    <p style="color: red;" id="titleMsg"></p>
+    <div class="group">
+        <label class="small ifta-label" for="Email">Email</label>
+        <input type="text" class="ifta-field" id="title" name="email" placeholder="Enter Email" />
+    </div>
+
+    <p style="color: red;" id="titleMsg"></p>
+    <div class="group">
+        <label class="small ifta-label" for="Password">Password</label>
+        <input type="text" class="ifta-field" id="title" name="password" placeholder="Enter Password" />
+    </div>
+
+    <p style="color: red;" id="titleMsg"></p>
+    <div class="group">
+        <label class="small ifta-label" for="username">username</label>
+        <input type="text" class="ifta-field" id="title" name="username" placeholder="Enter Username" />
+    </div>
+
+    <p style="color: red;" id="titleMsg"></p>
+    <div class="group">
+        <label class="small ifta-label" for="dateOfBirth">dateOfBirth</label>
+        <input type="date" class="ifta-field" id="title" name="dateOfBirth" placeholder="Enter Admin date Of Birth" />
+    </div>
+
     <div class="button">
-        <button type="submit" id="submitForm" class="updateDetails">Add Category</button>
+        <button type="submit" id="submitForm" class="updateDetails">Add Admin</button>
     </div>
 
         </div>
@@ -107,12 +139,12 @@
                     
                         <div class="alert success">
                             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                            Category added Successfully!
+                            Admin added Successfully!
                         </div>
                <?php } else{?>
                 div class="alert danger">
                             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                            Error adding Category!
+                            Error adding Admin!
                         </div>
                <?php }
                     unset($_SESSION["createdSession"]);
