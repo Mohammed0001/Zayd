@@ -54,7 +54,7 @@
         <?php  if (isset($_SESSION["isNotValid"])) {
                 if ( $_SESSION["isNotValid"] == "1") {?>
                     
-                        <div class="alert">
+                        <div class="alert danger">
                             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                             Invalid Username or Password
                         </div>
