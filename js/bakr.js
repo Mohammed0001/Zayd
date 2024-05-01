@@ -25,14 +25,16 @@ function getCookie(cname) {
     // document.getElementById("dateofbirth").value = userData["dateofbirth"];
     // document.getElementById("password").value = userData["password"];
     document.getElementById("userName").innerHTML = "Hi! " + getCookie("name").split(' ')[0];
-    document.getElementById("ssn").value = getCookie("SSN");
     document.getElementById("userImage").src = getCookie("image");
-    document.getElementById("name").value = getCookie("name");
-    document.getElementById("username").value = getCookie("username");
-    document.getElementById("email").value = getCookie("email");
-    // document.getElementById("phonenumber").value = getCookie("name")
-    document.getElementById("dateofbirth").value = getCookie("dateOfBirth");
-    document.getElementById("password").value = getCookie("password");
+    if (document.getElementById("ssn")) {
+        document.getElementById("ssn").value = getCookie("SSN");
+        document.getElementById("name").value = getCookie("name");
+        document.getElementById("username").value = getCookie("username");
+        document.getElementById("email").value = getCookie("email");
+        // document.getElementById("phonenumber").value = getCookie("name")
+        document.getElementById("dateofbirth").value = getCookie("dateOfBirth");
+        document.getElementById("password").value = getCookie("password");
+    }
 // };
 
 $(document).ready(function(){
