@@ -41,7 +41,6 @@ $("#showPassword").click(function(){
         $( this ).toggleClass("fa-eye");
         $( this ).toggleClass("fa-eye-slash");
     }
-    
 });
 
 
@@ -61,7 +60,7 @@ otherImages.forEach(function(element) {
 var pData = {
     "id" : "1",
     "name" : "Car",
-    "description" : " This exquisitely crafted antique writing desk is a testament to the artistry of its time, meticulously fashioned from solid mahogany wood. Adorned with intricate carvings and boasting a luxurious leather writing surface, this desk exemplifies both elegance and functionality. Its timeless design appeals to collectors and antique enthusiasts alike, offering a piece of history that embodies craftsmanship and sophistication. Whether as a focal point in a study or as a cherished addition to a curated collection, this writing desk promises to elevate any space with its historical charm and enduring beauty. A true treasure for those who appreciate the allure of finely crafted antique",
+    "description" : "This exquisitely crafted antique writing desk is a testament to the artistry of its time, meticulously fashioned from solid mahogany wood. Adorned with intricate carvings and boasting a luxurious leather writing surface, this desk exemplifies both elegance and functionality. Its timeless design appeals to collectors and antique enthusiasts alike, offering a piece of history that embodies craftsmanship and sophistication. Whether as a focal point in a study or as a cherished addition to a curated collection, this writing desk promises to elevate any space with its historical charm and enduring beauty. A true treasure for those who appreciate the allure of finely crafted antique",
     "closureTime" : '2024-05-20T23:00:00Z' ,
     "bidders" : "10",
     "price" : "10000",
@@ -91,7 +90,6 @@ function updateTimeleft() {
         const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-        
         const timeLeft = document.getElementById('timeLeft');
         if (timeLeft) {
             timeLeft.textContent  = `${days}D ${hours}H ${minutes}M ${seconds}Sec`;

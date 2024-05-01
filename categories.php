@@ -24,7 +24,6 @@
        <?php include "includes/navbar.php";?>
 
     <div class="categCont">
-
     <h2>
         CATEGORIES
     </h2>

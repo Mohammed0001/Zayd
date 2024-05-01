@@ -5,9 +5,14 @@
     </div>
     <a href="index.html"><img src="img/logo.png" alt="Zayed"></a>
     <div class="profileBtn">
-        <a class="login-button" href="login.php">Login</a>
-        <a class="login-button" href="signup.php">Signup</a>
-        <a class="login-button hide" href="dashboard.php">Profile</a>
+        <?php if (isset($_COOKIE["SSN"])) {?>
+         <a class="login-button" href="dashboard.php">Profile</a>
+        <?php } else {?>
+            
+            <a class="login-button" href="login.php">Login</a>
+            <a class="login-button" href="signup.php">Signup</a>
+            
+       <?php } ?> 
     </div>
 </nav>
 <div class="secondary-nav" id="secondary-nav">

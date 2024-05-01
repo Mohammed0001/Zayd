@@ -39,10 +39,10 @@ $(document).ready(function () {
     })
 });
 
-document.getElementById("userDataScript").onload = function () {
-    if(userData["id"] !=""){
-        $(".profileBtn a").toggleClass("hide");
-    }
-}
+// document.getElementById("userDataScript").onload = function () {
+//     if(userData["id"] !=""){
+//         $(".profileBtn a").toggleClass("hide");
+//     }
+// }
 
 
