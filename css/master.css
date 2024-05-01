@@ -514,6 +514,14 @@ button:hover {
 .alert.danger:hover {
   background-color: #f44336;
 }
+.alert.success {
+  background-color: #36f45ca4;
+  border: 2px solid #36f45c;
+}
+
+.alert.success:hover {
+  background-color: #36f45c;
+}
 /* The close button */
 .closebtn {
   margin-left: 15px;
