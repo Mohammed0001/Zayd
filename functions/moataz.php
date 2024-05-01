@@ -20,11 +20,11 @@ if ($_GET["type"] == "sellproduct") {
         }
         echo "DONE";
         $_SESSION["createdSession"] = "1";
-        // header("Location: ../sellproduct.php");
+        header("Location: ../sellproduct.php");
     }else{
         $_SESSION["createdSession"] = "0";
         echo "non";
-        // header("Location: ../sellproduct.php");
+        header("Location: ../sellproduct.php");
     }
     
    

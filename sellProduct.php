@@ -19,15 +19,15 @@
 
 <?php
             session_start();
-            if (isset($_SESSION["createdSession"])) {
-                if ( $_SESSION["createdSession"] == "1") {
-                   echo "<script>alert('Created Successfully!');</script>";
-                }else{
-                    echo "<script>alert('Error Creating!');</script>";
-                }
-                unset($_SESSION["createdSession"]);
+            // if (isset($_SESSION["createdSession"])) {
+            //     if ( $_SESSION["createdSession"] == "1") {
+            //        echo "<script>alert('Created Successfully!');</script>";
+            //     }else{
+            //         echo "<script>alert('Error Creating!');</script>";
+            //     }
+            //     unset($_SESSION["createdSession"]);
 
-            }
+            // }
         ?>
 
 
@@ -132,6 +132,23 @@
         <button type="submit" id="submitForm" class="updateDetails">Post Now!</button>
     </div>
 
+    <?php  if (isset($_SESSION["createdSession"])) {
+                if ( $_SESSION["createdSession"] == "1") {?>
+                    
+                        <div class="alert success">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                            Product Posted Successfully!
+                        </div>
+               <?php } else{?>
+                div class="alert danger">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                            Error Posting Product!
+                        </div>
+               <?php }
+                    unset($_SESSION["createdSession"]);
+                }
+            
+            ?>
 
 </form>
 </div>
