@@ -22,6 +22,60 @@ session_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/af3e7165d7.js" crossorigin="anonymous"></script>
     <style>
+        
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th,
+td {
+    text-align: center;
+    padding: 16px;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+}
+tr{
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+}
+thead {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa;
+}
+
+tbody {
+    width: 100%;
+    display: block;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tbody::-webkit-scrollbar {
+    width: 3px;
+}
+
+table tbody::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+table tbody::-webkit-scrollbar-thumb {
+    background-color: #122620;
+}
+
+.expired{
+    opacity: 0.5;
+}
+
         .secondary-nav{
             display: flex;
         }
