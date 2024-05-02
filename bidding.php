@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+include "includes/db-connect.php";
+session_start();
+    if (!isset($_COOKIE["SSN"])) {
+        header("Location: login.php");
+    }else{
+        if ($_COOKIE["type"] == "admin") {
+            header("Location: admin/dashboard.php");
+        }
+    }
+?>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,25 +47,14 @@
         <h2 style="color:#d6ad60 ;">Make It Yours Now!</h2>
         <div class="productBid">
             <div class="pImage bidItem" >
-                <img src="https://americancollectors.com/wp-content/uploads/1st-article-photo-1-690x370-1.jpg" id="mainImage" alt="MyProduct"></div>
+                <img id="mainImage" src="" id="mainImage" alt="MyProduct"></div>
             <div class="pImages bidItem">
-                <div class="otherImages">
-                    <img src="https://dealeraccelerate-all.s3.amazonaws.com/ag/marketing_assets/469/1912-ford-model-t-speedster__1_.jpeg" class="otherImage" alt="MyProduct">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKzZ98coy5DlY-gULLQNPT8WYpVhJAbW6xZWDSmcXleQ&s" class="otherImage" alt="MyProduct">
-                    <img src="https://dealeraccelerate-all.s3.amazonaws.com/ag/marketing_assets/468/1920-chevrolet-490.jpeg" class="otherImage" alt="MyProduct">
-                    <img src="https://dealeraccelerate-all.s3.amazonaws.com/ag/marketing_assets/469/1912-ford-model-t-speedster__1_.jpeg" class="otherImage" alt="MyProduct">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKzZ98coy5DlY-gULLQNPT8WYpVhJAbW6xZWDSmcXleQ&s" class="otherImage" alt="MyProduct">
-                    <img src="https://dealeraccelerate-all.s3.amazonaws.com/ag/marketing_assets/468/1920-chevrolet-490.jpeg" class="otherImage" alt="MyProduct">
-                    <img src="https://dealeraccelerate-all.s3.amazonaws.com/ag/marketing_assets/469/1912-ford-model-t-speedster__1_.jpeg" class="otherImage" alt="MyProduct">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKzZ98coy5DlY-gULLQNPT8WYpVhJAbW6xZWDSmcXleQ&s" class="otherImage" alt="MyProduct">
-                    <img src="https://dealeraccelerate-all.s3.amazonaws.com/ag/marketing_assets/468/1920-chevrolet-490.jpeg" class="otherImage" alt="MyProduct">
-                    <img src="https://dealeraccelerate-all.s3.amazonaws.com/ag/marketing_assets/469/1912-ford-model-t-speedster__1_.jpeg" class="otherImage" alt="MyProduct">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKzZ98coy5DlY-gULLQNPT8WYpVhJAbW6xZWDSmcXleQ&s" class="otherImage" alt="MyProduct">
-                    <img src="https://dealeraccelerate-all.s3.amazonaws.com/ag/marketing_assets/468/1920-chevrolet-490.jpeg" class="otherImage" alt="MyProduct">
-                </div>
+                <div class="otherImages" id="otherImages">
+                  
+                </div> 
             </div>
             <div class="pDetails bidItem">
-                <h3 id="productName">Car</h3>
+                <h3 id="productName"></h3>
                 <div class="pData">
                     <h4>Time Left: <span id="timeLeft"></span></h4>
                     <h4>Minimum Bid: <span id="minBid"></span></h4>
@@ -64,12 +63,23 @@
                     <form class="myProfileForm" action="addBid.php">
                         <div class="group">
                             <label class="small ifta-label" for="bidValue">Bid</label>
-                            <input type="number" class="ifta-field" style="box-sizing: border-box;" id="bidValue" placeholder="100" />
+                            <input type="number" class="ifta-field" style="box-sizing: border-box;" id="bidValue" name="bidValue" placeholder="100" />
                         </div>
                         <div class="col-xs-12">
                             <button type="button" id="submitBid" class="updateDetails">Bid</button>
                         </div>
                     </form>
+                </div>
+                <br>
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                              <th>Bids History</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bidHistory"></tbody>
+                    </table>    
                 </div>
             </div>
             <div class="pDesc bidItem">
@@ -82,227 +92,43 @@
                     Suggestions 
                 </h3>
                 <div class="productsContainer suggestions">
-                    <div class="productCard">
-                        <div class="mainData">
-                            <img src="https://americancollectors.com/wp-content/uploads/1st-article-photo-1-690x370-1.jpg" alt="MyProduct">
-                            <div class="details">
-                                <span class="pName">Antique Mahogany Writing Desk</span>
-                                <span class="price">1,000 EGP <span class="bidders"><i class="fa fa-gavel"></i> 10</span></span>
-                            </div>
-                        </div>
-                        <div class="secondaryData hide">
-                            <div class="details">
-                                <span class="pName">Antique Mahogany Writing Desk</span>
-                                <p class="pDesc">Beautifully crafted antique writing desk made from solid mahogany wood. Features
-                                    intricate
-                                    carvings and a leather writing surface. Ideal for collectors or antique enthusiasts.</p>
-                                <span id="price">Current Price: 1,000 EGP </span>
-                                <span id="price">Min Bid: 150 EGP </span>
-                                <span id="bidders">Bidders: 10 <i class="fa fa-gavel"></i></span>
-                                <span id="timeleft">Time Left: 10 Sec <i class="fa fa-hourglass-start"></i> </span>
-                                <button class="editProduct">Bid Now</button>
-                            </div>
+                         <?php
+                //current bid , primary image , current price count bidders , 
+                $sql = "SELECT p.*, 
+               (SELECT COUNT(DISTINCT userID) FROM bid WHERE productID = p.id) AS bidders_count,
+               (SELECT `file` FROM pimage WHERE pID = p.id AND isPrimary = '1') AS mainImage
+                FROM product p
+                WHERE `status` = 'active' AND `categoryName` IN (SELECT categoryName FROM product WHERE id =   '". $_GET["pid"] . "') AND id != '".$_GET["pid"]  ."' ;";
+                $result = $conn->query($sql); 
+                $duration = 86400 * 30;
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo '
+                          <div class="productCard">
+                    <div class="mainData">
+                        <img src="'.$row["mainImage"].'" alt="MyProduct">
+                        <div class="details">
+                            <h3 class="pName">'.$row["name"].'</h3>
+                            <span class="price">'.$row["currentBid"].' EGP <span class="bidders"><i class="fa fa-gavel"></i> '.$row["bidders_count"].'</span></span>
                         </div>
                     </div>
-                    <div class="productCard">
-                        <div class="mainData">
-                            <img src="https://americancollectors.com/wp-content/uploads/1st-article-photo-1-690x370-1.jpg" alt="MyProduct">
-                            <div class="details">
-                                <span class="pName">Antique Mahogany Writing Desk</span>
-                                <span class="price">1,000 EGP <span class="bidders"><i class="fa fa-gavel"></i> 10</span></span>
-                            </div>
-                        </div>
-                        <div class="secondaryData hide">
-                            <div class="details">
-                                <span class="pName">Antique Mahogany Writing Desk</span>
-                                <p class="pDesc">Beautifully crafted antique writing desk made from solid mahogany wood. Features
-                                    intricate
-                                    carvings and a leather writing surface. Ideal for collectors or antique enthusiasts.</p>
-                                <span id="price">Current Price: 1,000 EGP </span>
-                                <span id="price">Min Bid: 150 EGP </span>
-                                <span id="bidders">Bidders: 10 <i class="fa fa-gavel"></i></span>
-                                <span id="timeleft">Time Left: 10 Sec <i class="fa fa-hourglass-start"></i> </span>
-                                <button class="editProduct">Bid Now</button>
-                            </div>
+                    <div class="secondaryData hide">
+                        <div class="details">
+                            <h3 class="pName">'.$row["name"].'</h3>
+                            <p class="pDesc">'.$row["description"].'</p>
+                            <span id="price">Current Price: '.$row["currentBid"].' EGP </span>
+                            <span id="price">Min Bid: '.$row["minBid"].'EGP </span>
+                            <span id="bidders">Bidders: '.$row["currentBid"].' <i class="fa fa-gavel"></i></span>
+                            <span id="timeleft">Closer Time: '.$row["bidExpiry"].' <i class="fa fa-hourglass-start"></i> </span>
+                            <br>
+                            <a class="editProduct" href="bidding.php?pid='.$row["id"].'">Let it be yours BID!</a>
                         </div>
                     </div>
-                    <div class="productCard">
-                        <div class="mainData">
-                            <img src="https://americancollectors.com/wp-content/uploads/1st-article-photo-1-690x370-1.jpg" alt="MyProduct">
-                            <div class="details">
-                                <span class="pName">Antique Mahogany Writing Desk</span>
-                                <span class="price">1,000 EGP <span class="bidders"><i class="fa fa-gavel"></i> 10</span></span>
-                            </div>
-                        </div>
-                        <div class="secondaryData hide">
-                            <div class="details">
-                                <span class="pName">Antique Mahogany Writing Desk</span>
-                                <p class="pDesc">Beautifully crafted antique writing desk made from solid mahogany wood. Features
-                                    intricate
-                                    carvings and a leather writing surface. Ideal for collectors or antique enthusiasts.</p>
-                                <span id="price">Current Price: 1,000 EGP </span>
-                                <span id="price">Min Bid: 150 EGP </span>
-                                <span id="bidders">Bidders: 10 <i class="fa fa-gavel"></i></span>
-                                <span id="timeleft">Time Left: 10 Sec <i class="fa fa-hourglass-start"></i> </span>
-                                <button class="editProduct">Bid Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="productCard">
-                        <div class="mainData">
-                            <img src="https://americancollectors.com/wp-content/uploads/1st-article-photo-1-690x370-1.jpg" alt="MyProduct">
-                            <div class="details">
-                                <span class="pName">Antique Mahogany Writing Desk</span>
-                                <span class="price">1,000 EGP <span class="bidders"><i class="fa fa-gavel"></i> 10</span></span>
-                            </div>
-                        </div>
-                        <div class="secondaryData hide">
-                            <div class="details">
-                                <span class="pName">Antique Mahogany Writing Desk</span>
-                                <p class="pDesc">Beautifully crafted antique writing desk made from solid mahogany wood. Features
-                                    intricate
-                                    carvings and a leather writing surface. Ideal for collectors or antique enthusiasts.</p>
-                                <span id="price">Current Price: 1,000 EGP </span>
-                                <span id="price">Min Bid: 150 EGP </span>
-                                <span id="bidders">Bidders: 10 <i class="fa fa-gavel"></i></span>
-                                <span id="timeleft">Time Left: 10 Sec <i class="fa fa-hourglass-start"></i> </span>
-                                <button class="editProduct">Bid Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="productCard">
-                        <div class="mainData">
-                            <img src="https://americancollectors.com/wp-content/uploads/1st-article-photo-1-690x370-1.jpg" alt="MyProduct">
-                            <div class="details">
-                                <span class="pName">Antique Mahogany Writing Desk</span>
-                                <span class="price">1,000 EGP <span class="bidders"><i class="fa fa-gavel"></i> 10</span></span>
-                            </div>
-                        </div>
-                        <div class="secondaryData hide">
-                            <div class="details">
-                                <span class="pName">Antique Mahogany Writing Desk</span>
-                                <p class="pDesc">Beautifully crafted antique writing desk made from solid mahogany wood. Features
-                                    intricate
-                                    carvings and a leather writing surface. Ideal for collectors or antique enthusiasts.</p>
-                                <span id="price">Current Price: 1,000 EGP </span>
-                                <span id="price">Min Bid: 150 EGP </span>
-                                <span id="bidders">Bidders: 10 <i class="fa fa-gavel"></i></span>
-                                <span id="timeleft">Time Left: 10 Sec <i class="fa fa-hourglass-start"></i> </span>
-                                <button class="editProduct">Bid Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="productCard">
-                        <div class="mainData">
-                            <img src="https://americancollectors.com/wp-content/uploads/1st-article-photo-1-690x370-1.jpg" alt="MyProduct">
-                            <div class="details">
-                                <span class="pName">Antique Mahogany Writing Desk</span>
-                                <span class="price">1,000 EGP <span class="bidders"><i class="fa fa-gavel"></i> 10</span></span>
-                            </div>
-                        </div>
-                        <div class="secondaryData hide">
-                            <div class="details">
-                                <span class="pName">Antique Mahogany Writing Desk</span>
-                                <p class="pDesc">Beautifully crafted antique writing desk made from solid mahogany wood. Features
-                                    intricate
-                                    carvings and a leather writing surface. Ideal for collectors or antique enthusiasts.</p>
-                                <span id="price">Current Price: 1,000 EGP </span>
-                                <span id="price">Min Bid: 150 EGP </span>
-                                <span id="bidders">Bidders: 10 <i class="fa fa-gavel"></i></span>
-                                <span id="timeleft">Time Left: 10 Sec <i class="fa fa-hourglass-start"></i> </span>
-                                <button class="editProduct">Bid Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="productCard">
-                        <div class="mainData">
-                            <img src="https://americancollectors.com/wp-content/uploads/1st-article-photo-1-690x370-1.jpg" alt="MyProduct">
-                            <div class="details">
-                                <span class="pName">Antique Mahogany Writing Desk</span>
-                                <span class="price">1,000 EGP <span class="bidders"><i class="fa fa-gavel"></i> 10</span></span>
-                            </div>
-                        </div>
-                        <div class="secondaryData hide">
-                            <div class="details">
-                                <span class="pName">Antique Mahogany Writing Desk</span>
-                                <p class="pDesc">Beautifully crafted antique writing desk made from solid mahogany wood. Features
-                                    intricate
-                                    carvings and a leather writing surface. Ideal for collectors or antique enthusiasts.</p>
-                                <span id="price">Current Price: 1,000 EGP </span>
-                                <span id="price">Min Bid: 150 EGP </span>
-                                <span id="bidders">Bidders: 10 <i class="fa fa-gavel"></i></span>
-                                <span id="timeleft">Time Left: 10 Sec <i class="fa fa-hourglass-start"></i> </span>
-                                <button class="editProduct">Bid Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="productCard">
-                        <div class="mainData">
-                            <img src="https://americancollectors.com/wp-content/uploads/1st-article-photo-1-690x370-1.jpg" alt="MyProduct">
-                            <div class="details">
-                                <span class="pName">Antique Mahogany Writing Desk</span>
-                                <span class="price">1,000 EGP <span class="bidders"><i class="fa fa-gavel"></i> 10</span></span>
-                            </div>
-                        </div>
-                        <div class="secondaryData hide">
-                            <div class="details">
-                                <span class="pName">Antique Mahogany Writing Desk</span>
-                                <p class="pDesc">Beautifully crafted antique writing desk made from solid mahogany wood. Features
-                                    intricate
-                                    carvings and a leather writing surface. Ideal for collectors or antique enthusiasts.</p>
-                                <span id="price">Current Price: 1,000 EGP </span>
-                                <span id="price">Min Bid: 150 EGP </span>
-                                <span id="bidders">Bidders: 10 <i class="fa fa-gavel"></i></span>
-                                <span id="timeleft">Time Left: 10 Sec <i class="fa fa-hourglass-start"></i> </span>
-                                <button class="editProduct">Bid Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="productCard">
-                        <div class="mainData">
-                            <img src="https://americancollectors.com/wp-content/uploads/1st-article-photo-1-690x370-1.jpg" alt="MyProduct">
-                            <div class="details">
-                                <span class="pName">Antique Mahogany Writing Desk</span>
-                                <span class="price">1,000 EGP <span class="bidders"><i class="fa fa-gavel"></i> 10</span></span>
-                            </div>
-                        </div>
-                        <div class="secondaryData hide">
-                            <div class="details">
-                                <span class="pName">Antique Mahogany Writing Desk</span>
-                                <p class="pDesc">Beautifully crafted antique writing desk made from solid mahogany wood. Features
-                                    intricate
-                                    carvings and a leather writing surface. Ideal for collectors or antique enthusiasts.</p>
-                                <span id="price">Current Price: 1,000 EGP </span>
-                                <span id="price">Min Bid: 150 EGP </span>
-                                <span id="bidders">Bidders: 10 <i class="fa fa-gavel"></i></span>
-                                <span id="timeleft">Time Left: 10 Sec <i class="fa fa-hourglass-start"></i> </span>
-                                <button class="editProduct">Bid Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="productCard">
-                        <div class="mainData">
-                            <img src="https://americancollectors.com/wp-content/uploads/1st-article-photo-1-690x370-1.jpg" alt="MyProduct">
-                            <div class="details">
-                                <span class="pName">Antique Mahogany Writing Desk</span>
-                                <span class="price">1,000 EGP <span class="bidders"><i class="fa fa-gavel"></i> 10</span></span>
-                            </div>
-                        </div>
-                        <div class="secondaryData hide">
-                            <div class="details">
-                                <span class="pName">Antique Mahogany Writing Desk</span>
-                                <p class="pDesc">Beautifully crafted antique writing desk made from solid mahogany wood. Features
-                                    intricate
-                                    carvings and a leather writing surface. Ideal for collectors or antique enthusiasts.</p>
-                                <span id="price">Current Price: 1,000 EGP </span>
-                                <span id="price">Min Bid: 150 EGP </span>
-                                <span id="bidders">Bidders: 10 <i class="fa fa-gavel"></i></span>
-                                <span id="timeleft">Time Left: 10 Sec <i class="fa fa-hourglass-start"></i> </span>
-                                <button class="editProduct">Bid Now</button>
-                            </div>
-                        </div>
-                    </div>
-
+                </div>
+                        ';
+                    }
+                }else{echo "NO SUGGESTIONS ";}
+            ?>
                 </div>
             </div>
 
@@ -311,6 +137,7 @@
 
     <?php include "includes/footer.php";?>
     <script src="js/main.js"></script>
+    <script src="js/bidding.js"></script>
     <script src="js/bakr.js"></script>
 
 </body>

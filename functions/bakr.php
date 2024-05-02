@@ -30,9 +30,48 @@
                echo json_encode("suc");
                // header("Location: ../dashboard.php");
             }else{
-                    $_SESSION["pAcceptance"] = 0;
-               
+                $_SESSION["pAcceptance"] = 0;
             }
+        }else if ($_GET["type"] == "getProduct") {
+            $sql = "SELECT p.*, 
+               (SELECT COUNT(DISTINCT userID) FROM bid WHERE productID = p.id) AS bidders_count,
+               (SELECT `file` FROM pimage WHERE pID = p.id AND isPrimary = '1') AS mainImage
+                FROM product p WHERE p.id = '".$_GET["pid"]."';"; 
+            $result = $conn->query($sql);
+             if ($result->num_rows > 0) {
+                $products = array();
+                while($row = $result->fetch_assoc()) {
+                    $products[] = $row;
+                }
+                echo json_encode(['product' => $products]);
+            } 
         }
+        else if ($_GET["type"] == "getProductImages") {
+            $sql = "SELECT * FROM pimage WHERE pid = '".$_GET["pid"]."';"; 
+            $result = $conn->query($sql);
+             if ($result->num_rows > 0) {
+                $images = array();
+                while($row = $result->fetch_assoc()) {
+                    $images[] = $row;
+                }
+                echo json_encode(['images' => $images]);
+            } 
+        }
+         else if ($_GET["type"] == "getBids") {
+            $sql = "SELECT * FROM bid WHERE productID = '".$_GET["pid"]."' ORDER BY id DESC ;"; 
+            $result = $conn->query($sql);
+             if ($result->num_rows > 0) {
+                $bids = array();
+                while($row = $result->fetch_assoc()) {
+                    $bids[] = $row;
+                }
+                echo json_encode(['bids' => $bids]);
+            } else{
+                echo json_encode(['bids' => "0"]);
+
+            }
+
+        }
+
     }
 ?>

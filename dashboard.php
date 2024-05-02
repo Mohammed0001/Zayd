@@ -169,11 +169,11 @@ session_start();
             <div class="productsContainer">
                  <?php
                 //current bid , primary image , current price count bidders , 
-                $sql = "SELECT p.name, p.description, p.currentBid, p.bidExpiry, 
+                $sql = "SELECT p.*, 
                (SELECT COUNT(DISTINCT userID) FROM bid WHERE productID = p.id) AS bidders_count,
                (SELECT `file` FROM pimage WHERE pID = p.id AND isPrimary = '1') AS mainImage
-        FROM product p
-        JOIN bid b ON b.productID = p.id WHERE `status` = 'active'AND b.userID =  '" . $_COOKIE["SSN"] . "';";
+                FROM product p
+                WHERE `status` = 'active' AND p.id IN (SELECT `productID` FROM bid WHERE `userID` =  '" . $_COOKIE["SSN"] . "') ;";
                 $result = $conn->query($sql); 
                 $duration = 86400 * 30;
                 if ($result->num_rows > 0) {
@@ -196,7 +196,7 @@ session_start();
                             <span id="bidders">Bidders: '.$row["currentBid"].' <i class="fa fa-gavel"></i></span>
                             <span id="timeleft">Closer Time: '.$row["bidExpiry"].' <i class="fa fa-hourglass-start"></i> </span>
                             <br>
-                            <a class="editProduct" href="bidding.php?product=id">Let it be yours BID!</a>
+                            <a class="editProduct" href="bidding.php?pid='.$row["id"].'" >Let it be yours BID!</a>
                         </div>
                     </div>
                 </div>
