@@ -68,10 +68,34 @@
                 echo json_encode(['bids' => $bids]);
             } else{
                 echo json_encode(['bids' => "0"]);
+            }
+        }
+        else if ($_GET["type"] == "getWinningBid") {
+            $sql = "SELECT * FROM bid WHERE productID = '".$_GET["pid"]."' AND userID = '".$_COOKIE["SSN"]."'  AND `isWinningBid` = '1' ;"; 
+            $result = $conn->query($sql);
+             if ($result->num_rows > 0) {
+                $winningBid = array();
+                while($row = $result->fetch_assoc()) {
+                    $winningBid[] = $row;
+                }
+                echo json_encode(['winningBid' => $winningBid]);
+            } else{
+                echo json_encode(['winningBid' => "0"]);
 
             }
-
         }
+        else if ($_GET["type"] == "addBid") {
+            $sql = "INSERT INTO bid (`value` , `isWinningBid` , `productID` , `userID` ) VALUES ('".$_POST["amount"]."' , '0', '".$_POST["pid"]."' , '".$_COOKIE["SSN"]."')"; 
+            $sqlUpdate = "UPDATE product SET currentBid = currentBid + ".$_POST["amount"]." WHERE id = '".$_POST["pid"]."';";
+             if ($conn->query($sql)) {
+                $conn->query($sqlUpdate);
+                echo json_encode(['created' => "1"]);
+            } else{
+                echo json_encode(['created' => "0"]);
+
+            }
+        }
+        
 
     }
 ?>

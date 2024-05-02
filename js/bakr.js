@@ -1,4 +1,3 @@
-//import {userData} from  './userData.js';
 function getCookie(cname) {
   let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
