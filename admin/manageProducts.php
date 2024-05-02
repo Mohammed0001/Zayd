@@ -1,5 +1,5 @@
 <html>
-        <?php include "../includes/navbar.php";
+      <?php  include "../includes/db-connect.php";
 session_start();
     if (!isset($_COOKIE["SSN"])) {
         header("Location: ../login.php");
@@ -83,75 +83,64 @@ session_start();
         <div class="content">
             <h1>Manage Products</h1>
             <div class="productsContainer">
-                <div class="productCard">
+
+                        <?php
+                //current bid , primary image , current price count bidders , 
+                $sql = "SELECT p.*, 
+                   (SELECT COUNT(DISTINCT userID) FROM bid WHERE productID = p.id) AS bidders_count,
+                   (SELECT `file` FROM pimage WHERE pID = p.id AND isPrimary = '1') AS mainImage
+            FROM product p  WHERE `status` = 'pending';";
+                $result = $conn->query($sql); 
+                $duration = 86400 * 30;
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo '
+                                         <div class="productCard">
                     <div class="mainData">
-                        <img src="https://americancollectors.com/wp-content/uploads/1st-article-photo-1-690x370-1.jpg" alt="MyProduct">
+                        <img src="'.$row["mainImage"].'" alt="MyProduct">
                         <div class="details">
-                            <h3 class="pName">Antique Mahogany Writing Desk</h3>
-                            <span class="price">1,000 EGP <span class="bidders"><i class="fa fa-gavel"></i> 10</span></span>
+                            <h3 class="pName">'.$row["name"].'</h3>
+                            <span class="price">'.$row["currentBid"].'EGP <span class="bidders"><i class="fa fa-gavel"></i> '.$row["bidders_count"].'</span></span>
                         </div>
                     </div>
                     <div class="secondaryData hide">
                         <div class="details">
-                            <h3 class="pName">Antique Mahogany Writing Desk</h3>
-                            <p class="pDesc">Beautifully crafted antique writing desk made from solid mahogany wood. Features intricate
-                                carvings and a leather writing surface. Ideal for collectors or antique enthusiasts.</p>
-                            <span id="price">Starting Price: 1,000 EGP </span>
-                            <span id="price">Min Bid: 150 EGP </span>
-                            <span id="timeleft">Closure Time : April 30, 2024, 5:00 PM (EST) <i class="fa fa-hourglass-start"></i>
+                            <h3 class="pName">'.$row["name"].'</h3>
+                            <p class="pDesc">'.$row["description"].'.</p>
+                            <span id="price">Starting Price: '.$row["currentBid"].' EGP </span>
+                            <span id="price">Min Bid: '.$row["minBid"].' EGP </span>
+                            <span id="timeleft">Closure Time : '.$row["bidExpiry"].' <i class="fa fa-hourglass-start"></i>
                             </span>
-                            <button class="editProduct success">Accept</button>
-                            <button class="editProduct danger">Reject</button>
+                            <button class="editProduct success" onclick="acceptProduct('.$row["id"].')">Accept</button>
+                            <button class="editProduct danger" onclick="rejectProduct('.$row["id"].')">Reject</button>
                         </div>
                     </div>
-                </div>
-                <div class="productCard">
-                    <div class="mainData">
-                        <img src="https://americancollectors.com/wp-content/uploads/1st-article-photo-1-690x370-1.jpg" alt="MyProduct">
-                        <div class="details">
-                            <h3 class="pName">Antique Mahogany Writing Desk</h3>
-                            <span class="price">1,000 EGP <span class="bidders"><i class="fa fa-gavel"></i> 10</span></span>
-                        </div>
-                    </div>
-                    <div class="secondaryData hide">
-                        <div class="details">
-                            <h3 class="pName">Antique Mahogany Writing Desk</h3>
-                            <p class="pDesc">Beautifully crafted antique writing desk made from solid mahogany wood. Features intricate
-                                carvings and a leather writing surface. Ideal for collectors or antique enthusiasts.</p>
-                            <span id="price">Starting Price: 1,000 EGP </span>
-                            <span id="price">Min Bid: 150 EGP </span>
-                            <span id="timeleft">Closure Time : April 30, 2024, 5:00 PM (EST) <i class="fa fa-hourglass-start"></i>
-                            </span>
-                            <button class="editProduct success">Accept</button>
-                            <button class="editProduct danger">Reject</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="productCard">
-                    <div class="mainData">
-                        <img src="https://americancollectors.com/wp-content/uploads/1st-article-photo-1-690x370-1.jpg" alt="MyProduct">
-                        <div class="details">
-                            <h3 class="pName">Antique Mahogany Writing Desk</h3>
-                            <span class="price">1,000 EGP <span class="bidders"><i class="fa fa-gavel"></i> 10</span></span>
-                        </div>
-                    </div>
-                    <div class="secondaryData hide">
-                        <div class="details">
-                            <h3 class="pName">Antique Mahogany Writing Desk</h3>
-                            <p class="pDesc">Beautifully crafted antique writing desk made from solid mahogany wood. Features intricate
-                                carvings and a leather writing surface. Ideal for collectors or antique enthusiasts.</p>
-                            <span id="price">Starting Price: 1,000 EGP </span>
-                            <span id="price">Min Bid: 150 EGP </span>
-                            <span id="timeleft">Closure Time : April 30, 2024, 5:00 PM (EST) <i class="fa fa-hourglass-start"></i> </span>
-                            <button class="editProduct success">Accept</button>
-                            <button class="editProduct danger">Reject</button>
-                        </div>
-                    </div>
-                </div>
+                </div>';
+                    }
+                }else{echo "No Products to manage.";}
+            ?>
+
             </div>
         </div>
     </div>
-
+    <?php if (isset($_SESSION["pAcceptance"])) {
+                if ($_SESSION["pAcceptance"] =="1") {?>
+                <div class="alert success">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    Accepted Successfully!
+                </div>
+        <?php }else if($_SESSION["pAcceptance"] =="2"){?>
+            <div class="alert success">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    Rejected Successfully!
+                </div>
+        <?php }else {?>
+            <div class="alert danger">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    Error ! Setting Status
+                </div>
+        <?php } unset($_SESSION["pAcceptance"]);
+     } ?>
     <script src="js/main.js"></script>
     <script src="js/bakr.js"></script>
 

@@ -140,7 +140,7 @@
                             Product Posted Successfully!
                         </div>
                <?php } else{?>
-                div class="alert danger">
+                <div class="alert danger">
                             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                             Error Posting Product!
                         </div>

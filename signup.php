@@ -73,13 +73,30 @@
                 <br>
                 <button type="submit" class="btn">Signup</button>
                 <div class="register-link">
-                    <p>By Clicking the signup button you agree to <a href="terms.html">Terms and Condition</a> and <a href="privacy.html">Privacy Policy</a> </p>
-                    <p>Already have an account? <a href="login.html">Login</a></p>
+                    <p>By Clicking the signup button you agree to <a href="terms.php">Terms and Condition</a> and <a href="privacy.php">Privacy Policy</a> </p>
+                    <p>Already have an account? <a href="login.php">Login</a></p>
                 </div>
                 </form>
             </div>
         </div>
       <?php include "includes/footer.php";?>
+       <?php  if (isset($_SESSION["createUser"])) {
+                if ( $_SESSION["createUser"] == "1") {?>
+                    
+                        <div class="alert success">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                            Account Created Successfully!
+                        </div>
+               <?php } else{?>
+                <div class="alert danger">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                            Error Creating Account!
+                        </div>
+               <?php }
+                    unset($_SESSION["createUser"]);
+                }
+            
+            ?>
     <script src="js/main.js"></script>
     <script src="js/Nashwa.js"></script>
     </body>

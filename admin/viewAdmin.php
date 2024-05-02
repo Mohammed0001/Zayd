@@ -1,8 +1,14 @@
 <html>
-<?php
-            session_start();
-           
-        ?>
+      <?php  include "../includes/db-connect.php";
+session_start();
+    if (!isset($_COOKIE["SSN"])) {
+        header("Location: ../login.php");
+    }else{
+        if ($_COOKIE["type"] == "user") {
+            header("Location: ../dashboard.php");
+        }
+    }
+?>
 <head>
     <base href="../">
     <link rel="icon" type="image/x-icon" href="img/logo1.png">
@@ -42,7 +48,9 @@
     tr:hover {
         background-color: #f5f5f5; /* Change background on row hover */
     }
-</style>
+        .secondary-nav{display:none;}
+    </style>
+
 
 </head>
 
@@ -62,7 +70,7 @@
                 <li><a href="admin/manageProducts.php" style="color: #fff;"><i class="fa fa-list"></i> Manage Product Sell Requests</a></li>
                 <li><a href="admin/addCategory.php" style="color: #fff;"><i class="fa fa-plus"></i>Add Category</a></li>
                 <li><a href="admin/addAdmin.php" style="color: #fff;"><i class="fa fa-user-plus"></i> Add Admin</a></li>
-                <li><a href="admin/viewAdmin.php" style="color: #fff;"><i class="fa fa-users"></i> View Admins</a></li>
+                <li class="active"><a href="admin/viewAdmin.php" style="color: #fff;"><i class="fa fa-users"></i> View Admins</a></li>
                 <!-- <li id="myProductsBtn" view-data="myProducts"><i class="fa fa-table"></i> Manage Products</li> -->
             </ul>
         </div>

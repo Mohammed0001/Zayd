@@ -1,5 +1,5 @@
 <html>
-        <?php include "../includes/navbar.php";
+      <?php  include "../includes/db-connect.php";
 session_start();
     if (!isset($_COOKIE["SSN"])) {
         header("Location: ../login.php");

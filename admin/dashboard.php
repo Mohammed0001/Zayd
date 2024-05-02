@@ -1,5 +1,14 @@
 <html>
-
+        <?php include "../includes/db-connect.php";
+session_start();
+    if (!isset($_COOKIE["SSN"])) {
+        header("Location: ../login.php");
+    }else{
+        if ($_COOKIE["type"] == "user") {
+            header("Location: ../dashboard.php");
+        }
+    }
+?>
 <head>
     <base href="../">
     <link rel="icon" type="image/x-icon" href="img/logo1.png">
@@ -11,16 +20,8 @@
 </head>
 
 <body>
-        <?php include "../includes/navbar.php";
-session_start();
-    if (!isset($_COOKIE["SSN"])) {
-        header("Location: ../login.php");
-    }else{
-        if ($_COOKIE["type"] == "user") {
-            header("Location: ../dashboard.php");
-        }
-    }
-?>
+        <?php include "../includes/navbar.php";?>
+
 
     <div class="dashboardNav web">
         <div class="profileImage">
@@ -109,7 +110,7 @@ session_start();
 
                     <div class="group">
                         <label class="small ifta-label" for="dateofbirth">Date Of Birth</label>
-                        <input type="date" class="ifta-field"  id="dateofbirth" name="dateofbirth" placeholder="24/5/2003"  />
+                        <input type="date" class="ifta-field"  id="dateofbirth" name="dateOfBirth" placeholder="24/5/2003"  />
                     </div>
 
                     <div class="group">
@@ -123,52 +124,26 @@ session_start();
                     </div>
             </form>
 
-            <form class="myProfileForm">
-                    <div class="group">
-                        <label class="small ifta-label" for="ssn">SSN</label>
-                        <input type="number" class="ifta-field" id="ssn" disabled placeholder="12345678901234" />
-                    </div>
-                    <div class="group">
-                        <label class="small ifta-label" for="name">Name</label>
-                        <input type="text" name="name" class="ifta-field" id="name" placeholder="Bakr" />
-                    </div>
-                    <div class="group">
-                        <label class="small ifta-label" for="username">Username</label>
-                        <input type="text" name="username" class="ifta-field" id="username" placeholder="bakoor" />
-                    </div>
-
-                    <div class="group">
-                        <label class="small ifta-label" for="email">Email</label>
-                        <input type="email" name="email" class="ifta-field" id="email" placeholder="example@example.com" />
-                    </div>
-
-                    <!-- <div class="group">
-                        <label class="small ifta-label" for="phonenumber">Phone Number</label>
-                        <input type="text" class="ifta-field" id="phonenumber" placeholder="+20 100 379 4005" />
-                    </div> -->
-
-                    <div class="group">
-                        <label class="small ifta-label" for="dateofbirth">Date Of Birth</label>
-                        <input type="date" class="ifta-field" name="dateofbirth" id="dateofbirth" placeholder="24/5/2003"  />
-                    </div>
-
-                    <div class="group">
-                        <label class="small ifta-label" for="password">Password</label>
-                        <input type="password" name="password" class="ifta-field" id="password" disabled placeholder="••••••••••" />
-                        <i id="showPassword" password-field="password" class="fa fa-eye"></i>
-                    </div>
-            
-                    <div class="col-xs-12">
-                        <button type="button" id="submitForm" class="updateDetails">Update Details</button>
-                    </div>
-            </form>
         </div>
        
         </div>
       
 
 
-        
+         <?php if (isset($_SESSION["updatedAdmin"])) {
+                if ($_SESSION["updatedAdmin"] =="1") {?>
+                <div class="alert success">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    Your Admin data Updated Successfully!
+                </div>
+        <?php }else{?>
+            <div class="alert danger">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    Error ! Updating Your Admin data 
+                </div>
+        <?php }
+        unset($_SESSION["updatedAdmin"]);
+     } ?>
     <script src="js/main.js"></script>
     <script src="js/bakr.js"></script>
     

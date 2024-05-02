@@ -126,10 +126,10 @@ session_start();
             <div class="productsContainer">
             <?php
                 //current bid , primary image , current price count bidders , 
-                $sql = "SELECT p.*,  
-               (SELECT COUNT(DISTINCT userID) FROM bid WHERE productID = p.id) AS bidders_count,
-               (SELECT `file` FROM pimage , product p WHERE pID = p.id AND isPrimary = '1') AS mainImage
-            FROM product p WHERE userID =  '" . $_COOKIE["SSN"] . "';";
+                $sql = "SELECT p.*, 
+                   (SELECT COUNT(DISTINCT userID) FROM bid WHERE productID = p.id) AS bidders_count,
+                   (SELECT `file` FROM pimage WHERE pID = p.id AND isPrimary = '1') AS mainImage
+            FROM product p  WHERE p.userID = '" . $_COOKIE["SSN"] . "';";
                 $result = $conn->query($sql); 
                 $duration = 86400 * 30;
                 if ($result->num_rows > 0) {
@@ -149,7 +149,7 @@ session_start();
                             <p class="pDesc">'.$row["description"].'</p>
                             <span id="price">Current Price: '.$row["currentBid"].' EGP </span>
                             <span id="price">Min Bid: '.$row["minBid"].' EGP </span>
-                            <span id="bidders">Bidders: '.$row["bidders_count"].' <i class="fa fa-gavel"></i></span>
+                            <span id="bidders[`'.$row["id"].'`]">Bidders: '.$row["bidders_count"].' <i class="fa fa-gavel"></i></span>
                             <span id="timeleft">Expiry Time: '.$row["bidExpiry"].' <i class="fa fa-hourglass-start"></i> </span>
                             <!--<button class="editProduct">Edit Details</button>-->
                         </div>

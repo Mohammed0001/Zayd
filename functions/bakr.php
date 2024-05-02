@@ -19,6 +19,20 @@
                 echo"msh done";
 
             }
+        }else if ($_GET["type"] == "updateProductStat") {
+             $sql = "UPDATE product SET `status` = '".$_POST["stat"]."' WHERE id = '".$_POST["pid"]."' ;"; 
+            if($conn->query($sql)){
+                if ($_POST["stat"]=="active") {
+                    $_SESSION["pAcceptance"] = 1;
+                }else{
+                    $_SESSION["pAcceptance"] = 2;
+                }
+               echo json_encode("suc");
+               // header("Location: ../dashboard.php");
+            }else{
+                    $_SESSION["pAcceptance"] = 0;
+               
+            }
         }
     }
 ?>

@@ -47,7 +47,7 @@
                 </div>
                 <button type="submit" class="btn">Login</button>
                 <div class="register-link">
-                    <p>Don't have an account?  <a href="signup.html">Register</a></p>
+                    <p>Don't have an account?  <a href="signup.php">Register</a></p>
                 </div>
             </form>
         </div>

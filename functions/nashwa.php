@@ -56,10 +56,10 @@ if (isset($_GET["type"])) {
         $sql = "INSERT INTO  `users`(`SSN`, `name`, `email`, `password`, `username`, `dateOfBirth`, `image`, `type`) VALUES ('".$_POST['SSN']."' ,'".$_POST['name']."' ,'".$_POST['email']."','".$_POST['password']."' ,'".$_POST['username']."','".$_POST['dateOfBirth']."','".$target_file."','user')";
         if ($conn->query($sql)) {
             echo "DONE";
-            $_SESSION["createdSession"] = "1";
+            $_SESSION["createUser"] = "1";
             header("Location: ../signup.php");
         }else{
-            $_SESSION["createdSession"] = "0";
+            $_SESSION["createUser"] = "0";
             header("Location: ../signup.php");
         }
     }

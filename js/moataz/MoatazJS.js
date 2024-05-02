@@ -151,7 +151,7 @@ $(document).ready(function () {
 });
 
 $(".bid-now-btn").click(function(){
-    window.location.href = 'bidding.html?id=1';
+    window.location.href = 'bidding.php?pid='+$(this).attr("product-id");
 });
 
 //JAVASCRIPT

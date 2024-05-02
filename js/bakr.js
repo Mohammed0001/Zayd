@@ -24,8 +24,10 @@ function getCookie(cname) {
     // document.getElementById("phonenumber").value = userData["phoneNumber"];
     // document.getElementById("dateofbirth").value = userData["dateofbirth"];
     // document.getElementById("password").value = userData["password"];
-    document.getElementById("userName").innerHTML = "Hi! " + getCookie("name").split(' ')[0];
-    document.getElementById("userImage").src = getCookie("image");
+    if (document.getElementById("userName")) {
+        document.getElementById("userName").innerHTML = "Hi! " + getCookie("name").split(' ')[0];
+        document.getElementById("userImage").src = getCookie("image");
+    }
     if (document.getElementById("ssn")) {
         document.getElementById("ssn").value = getCookie("SSN");
         document.getElementById("name").value = getCookie("name");
@@ -95,7 +97,15 @@ var pData = {
 
 $(document).ready(function(){
     updateTimeleft();
-    let dollarUSLocale = Intl.NumberFormat('en-US')
+    $.ajax({
+        type:'get',
+        dataType: 'json',
+        url:'functions/bakr.php?type=getProduct',
+        data:{'pid' : 1},
+        success:function(response){
+        }
+    });
+    let dollarUSLocale = Intl.NumberFormat('en-US');
     $("#productName").html(pData["name"]);
     $("#minBid").html(dollarUSLocale.format(pData["minBid"])+ " EGP");
     $("#bidders").html(pData["bidders"] + ' <i class="fa fa-gavel"></i>');
@@ -134,22 +144,50 @@ $("#logoutBtn").click(function(){
     window.location.href = "functions/nashwa.php?type=logout";
 });
 
-$("#submitForm").click(function () {
-    uname  = $("#name").val();
-    username  = $("#username").val();
-    email  = $("#email").val();
-    dateOfBirth  = $("#dateofbirth").val();
-    password  = $("#password").val();
-    newData = {uname, username , email, dateOfBirth, password};
+// $("#submitForm").click(function () {
+//     uname  = $("#name").val();
+//     username  = $("#username").val();
+//     email  = $("#email").val();
+//     dateOfBirth  = $("#dateofbirth").val();
+//     password  = $("#password").val();
+//     newData = {uname, username , email, dateOfBirth, password};
+//     $.ajax({
+//         type:'POST',
+//         dataType: 'json',
+//         url:'functions/bakr.php?type=updateData',
+//         data:{newData},
+//         success:function(response){
+//             alert("Updated Successfully!");
+//         }
+//     });
+
+
+// });
+
+function acceptProduct(pid) {
     $.ajax({
         type:'POST',
         dataType: 'json',
-        url:'functions/bakr.php?type=updateData',
-        data:{newData},
+        url:'functions/bakr.php?type=updateProductStat',
+        data:{'pid' : pid , 'stat' : 'active'},
         success:function(response){
-            alert("Updated Successfully!");
+                       window.location.reload();
+
         }
     });
+}
+
+function rejectProduct(pid) {
+    $.ajax({
+        type:'POST',
+        dataType: 'json',
+        url:'functions/bakr.php?type=updateProductStat',
+        data:{'pid' : pid , 'stat' : 'rejected'},
+        success:function(response){
+            window.location.reload();
+             
+        }
+    });
+}
 
 
-});
