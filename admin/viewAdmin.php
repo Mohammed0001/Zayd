@@ -21,32 +21,32 @@ session_start();
     <script src="https://kit.fontawesome.com/af3e7165d7.js" crossorigin="anonymous"></script>
 
     <style>
-    /* Style the table with a full width, and add a light gray background color */
+   
     table {
         width: 100%;
-        border-collapse: collapse; /* Collapse borders */
+        border-collapse: collapse; 
     }
 
-    /* Style the table header */
+   
     th {
-        background-color: #f2f2f2; /* Light gray background */
-        color: black; /* Black text color */
-        font-weight: bold; /* Make font bold */
-        padding: 12px; /* Add space around text */
-        text-align: left; /* Align text to the left */
-        border-bottom: 1px solid #ddd; /* Add a bottom border */
+        background-color: #122620; 
+        color: #d6ad60; 
+        font-weight: bold; 
+        padding: 12px; 
+        text-align: left; 
+        border-bottom: 1px solid #ddd; 
     }
 
-    /* Style the table cells */
+    
     td {
-        padding: 8px; /* Add space around text */
-        text-align: left; /* Align text to the left */
-        border-bottom: 1px solid #ddd; /* Add a light border to separate rows */
+        padding: 8px;
+        text-align: left; 
+        border-bottom: 1px solid #ddd; 
     }
 
-    /* Add a hover effect to rows */
+  
     tr:hover {
-        background-color: #f5f5f5; /* Change background on row hover */
+        background-color: #d6ad60; 
     }
         .secondary-nav{display:none;}
     </style>
