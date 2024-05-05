@@ -213,11 +213,11 @@ session_start();
             <div class="productsContainer">
                 <?php
                 //current bid , primary image , current price count bidders , 
-                $sql = "SELECT p.name, p.description, p.currentBid, p.bidExpiry, 
+                $sql = "SELECT p.*, 
                (SELECT COUNT(DISTINCT userID) FROM bid WHERE productID = p.id) AS bidders_count,
                (SELECT `file` FROM pimage WHERE pID = p.id AND isPrimary = '1') AS mainImage
-        FROM product p
-        JOIN bid b ON b.productID = p.id WHERE `status` = 'won' AND b.userID =  '" . $_COOKIE["SSN"] . "';";
+                FROM product p
+                JOIN bid b ON b.productID = p.id WHERE `status` = 'won' AND b.`isWinningBid` = '1' AND  b.userID =  '" . $_COOKIE["SSN"] . "';";
                 $result = $conn->query($sql); 
                 $duration = 86400 * 30;
                 if ($result->num_rows > 0) {

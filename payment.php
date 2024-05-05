@@ -160,8 +160,20 @@
 
       </div>
 
-   <?php include "includes/footer.php";?>
-
+    <?php include "includes/footer.php";?>
+       <?php
+       session_start();
+         if (isset($_SESSION["paidSuccessfully"])) {
+                if ( $_SESSION["paidSuccessfully"] == "0") {?>
+                        <div class="alert danger">
+                                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                                    Payment Failed!
+                                </div>
+               <?php }
+                    unset($_SESSION["createUser"]);
+                }
+            
+            ?>
     <script src="js/kareem/kareemP.js"></script>
     <script src="js/main.js"></script>
 

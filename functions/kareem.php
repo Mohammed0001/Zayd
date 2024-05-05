@@ -10,11 +10,11 @@ if (isset($_GET["type"])) {
         $sql = "INSERT INTO `payment`(`card_number`, `card_name`, `date`, `cvv`, `productID`, `payerID`) VALUES ('".$_POST['card_number']."' ,'".$_POST['card_name']."','".$_POST['date']."' ,'".$_POST['cvv']."','".$_POST["PID"]."','".$_COOKIE['SSN']."')";
         if ($conn->query($sql)) {
             echo "DONE";
-            $_SESSION["createdSession"] = "1";
+            $_SESSION["paidSuccessfully"] = "1";
             header("Location: ../liveAuctions.php");
         }else{
-            $_SESSION["createdSession"] = "0";
-            // header("Location: ../payment.php");
+            $_SESSION["paidSuccessfully"] = "0";
+            header("Location: ../payment.php");
         }
     }
         if ($_GET["type"] == "updateAdmin") {

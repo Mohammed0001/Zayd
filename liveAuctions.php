@@ -1,5 +1,5 @@
 <html>
-
+<?php     session_start();?>
 <head>
     <title>Zayd | Live Auctions</title>
     <link rel="icon" type="image/x-icon" href="img/logo1.png">
@@ -74,7 +74,19 @@
         </div>
 
     </section>
-
+            <?php 
+            
+            if (isset($_SESSION["paidSuccessfully"])) {
+                if ( $_SESSION["paidSuccessfully"] == "0") {?>
+                   <div class="alert success">
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                            Congratulations Payment Success!
+                        </div>
+               <?php }
+                    unset($_SESSION["createUser"]);
+                }
+            
+            ?>
     <?php include "includes/footer.php"; ?>
     <script src="js/main.js"></script>
     <script src="js/kareem/kareemLA.js"></script>

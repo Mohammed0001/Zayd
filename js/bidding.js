@@ -42,8 +42,8 @@ var pData = {
 };
 
 $(document).ready(async function(){
-    await setProduct();
-    updateTimeleft();
+    const result =  await setProduct();
+    const b = updateTimeleft();
     getBids();
     getImages();
 });
@@ -69,6 +69,22 @@ async function setProduct(){
     $("#productDescription").html(pData["description"]);
     $("#bidValue").attr('min' , pData["minBid"]);
     $("#bidValue").attr('value' , pData["minBid"]);  
+}
+
+async function setCurrPrice(){
+    const res = await $.ajax({
+        type:'get',
+        dataType: 'json',
+        url:'functions/bakr.php?type=getProduct',
+        data:{'pid' : getUrlParameter('pid')},
+        success:function(response){
+            console.log(response.product);
+            pData = response.product[0];
+        }
+    });
+    console.log(pData);
+    let dollarUSLocale = Intl.NumberFormat('en-US');
+    $("#price").html(dollarUSLocale.format(pData["currentBid"]) + " EGP");
 }
 
 var otherImages = document.querySelectorAll(".otherImage");
@@ -111,15 +127,15 @@ function setImageBehavior() {
             if (response.bids == "0") {
                  $("#bidHistory").append("<tr><td>Be The First Bidder</td></tr>");   
             }else{
-                $.each(response.bids, function(index, data) {
-                    
+                $.each(response.bids, async function(index, data) {
+                    const res = await setCurrPrice();
                     $("#bidHistory").append("<tr><td>"+data.value+" EGP</td></tr>");
                 });
             }
            
         }
     });
-    setInterval(getBids, 1000); 
+    setInterval(getBids, 9000); 
     
 }
 
@@ -153,7 +169,7 @@ function updateTimeleft() {
             $("#submitBid").attr('disabled' , "true");
             $("#submitBid").addClass("expired");
             if (!alreadyCalled) {
-                endAuction();
+                // endAuction();
                 alreadyCalled = true;
             }
         }
@@ -194,7 +210,7 @@ $("#submitBid").click(function () {
         type:'post',
         dataType: 'json',
         url:'functions/bakr.php?type=addBid',
-        data:{'pid' : getUrlParameter('pid') , 'amount' : amount},
+        data:{'pid' : pData['id'] , 'amount' : amount},
         success:function(response){
             setProduct();
             $("body").append('<div class="alert success">'+
