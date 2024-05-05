@@ -2,6 +2,8 @@
 <head>
     <link rel="stylesheet" href="css/moataz/MoatazCSS.css">
     <link rel="stylesheet" href="css/master.css">
+    <link rel="icon" type="image/x-icon" href="img/logo1.png">
+
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
