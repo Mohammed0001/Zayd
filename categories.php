@@ -36,7 +36,6 @@
                 include "includes/db-connect.php";
                 $sql = "SELECT * FROM category"; 
                 $result = $conn->query($sql); 
-                $duration = 86400 * 30;
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
                         echo '<a class="categCard"  href="liveAuctions.php?category='.$row["name"].'">

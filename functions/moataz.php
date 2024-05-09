@@ -32,12 +32,12 @@ if ($_GET["type"] == "sellproduct") {
     if ($conn->query($sql)) {
     echo "DONE";
     $_SESSION["createdSession"] = "1";
-    header("Location: ../admin/addAdmin.php");
+    header("Location: ../admin/addCategory.php");
     }
     else{
     $_SESSION["createdSession"] = "0";
     echo "non";
-    header("Location: ../admin/addAdmin.php");
+    header("Location: ../admin/addCategory.php");
 }
 } else if ($_GET["type"] == "addAdmin") {
     $target_dir = "img/uploads/pPic/";

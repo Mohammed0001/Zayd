@@ -169,7 +169,7 @@ function updateTimeleft() {
             $("#submitBid").attr('disabled' , "true");
             $("#submitBid").addClass("expired");
             if (!alreadyCalled) {
-                // endAuction();
+                endAuction();
                 alreadyCalled = true;
             }
         }

@@ -36,20 +36,11 @@
                 while ($row = $result->fetch_assoc()) {
 
                     $datetime_from_database = $row["bidExpiry"];
-
-                    // Convert the datetime from the database to a DateTime object
                     $database_datetime = new DateTime($datetime_from_database);
-
-                    // Get the current datetime
                     $current_datetime = new DateTime();
-
-                    // Calculate the difference
                     $time_left = $current_datetime->diff($database_datetime);
-
-                    // Format the difference
                     $time_left_formatted = $time_left->format("%a D, %h H, %i M, %s S");
-
-
+                    
                     echo '<div class="product-card">
                             <div class="product-image">
                                 <img src="' . $row["mainImage"] . '" alt="' . $row["name"] . '"/>
